@@ -1,0 +1,219 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7784,        209]
+NotebookOptionsPosition[      7324,        192]
+NotebookOutlinePosition[      7702,        208]
+CellTagsIndexPosition[      7659,        205]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"MapThread", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"StyleForm", "[", 
+         RowBox[{"#1", ",", 
+          RowBox[{"FontFamily", "\[Rule]", "\"\<Courier\>\""}], ",", 
+          RowBox[{"FontWeight", "\[Rule]", "\"\<Bold\>\""}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"FontSize", "->", "14"}], ",", 
+          RowBox[{"FontColor", "\[Rule]", 
+           RowBox[{"Hue", "@", 
+            RowBox[{"N", "[", 
+             RowBox[{"#2", ",", "4"}], "]"}]}]}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"#2", ",", 
+          RowBox[{"Sin", "@", "#2"}]}], "}"}]}], "]"}], "&"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Characters", "[", "\"\<IamJingMatrix\>\"", "]"}], ",", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"2", 
+          FractionBox[
+           RowBox[{"i", " ", "Pi"}], "13"]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", "13"}], "}"}]}], "]"}]}], "}"}]}], 
+    "]"}], "]"}], "]"}]], "Input",ExpressionUUID->"74365f42-4c2d-48d6-86d4-\
+32340d4a58ae"],
+
+Cell[BoxData[
+ GraphicsBox[{InsetBox[
+    TagBox[
+     StyleBox["\<\"I\"\>",
+      FontFamily->"Courier",
+      FontSize->14,
+      FontWeight->"Bold",
+      FontColor->Hue[0.4833219467061220366`4.]],
+     StyleForm[#, FontFamily -> "Courier", FontWeight -> "Bold", FontSize -> 
+      14, FontColor -> Hue[0.4833219467061220366`4.]]& ], 
+    NCache[{Rational[2, 13] Pi, Sin[Rational[2, 13] Pi]}, {
+     0.48332194670612205`, 0.46472317204376856`}]], InsetBox[
+    TagBox[
+     StyleBox["\<\"a\"\>",
+      FontFamily->"Courier",
+      FontSize->14,
+      FontWeight->"Bold",
+      FontColor->Hue[0.9666438934122440734`4.]],
+     StyleForm[#, FontFamily -> "Courier", FontWeight -> "Bold", FontSize -> 
+      14, FontColor -> Hue[0.9666438934122440734`4.]]& ], 
+    NCache[{Rational[4, 13] Pi, Cos[Rational[5, 26] Pi]}, {0.9666438934122441,
+      0.8229838658936564}]], InsetBox[
+    TagBox[
+     StyleBox["\<\"m\"\>",
+      FontFamily->"Courier",
+      FontSize->14,
+      FontWeight->"Bold",
+      FontColor->Hue[1.44996584011836611`4.]],
+     StyleForm[#, FontFamily -> "Courier", FontWeight -> "Bold", FontSize -> 
+      14, FontColor -> Hue[1.44996584011836611`4.]]& ], 
+    NCache[{Rational[6, 13] Pi, Cos[Rational[1, 26] Pi]}, {
+     1.4499658401183662`, 0.992708874098054}]], InsetBox[
+    TagBox[
+     StyleBox["\<\"J\"\>",
+      FontFamily->"Courier",
+      FontSize->14,
+      FontWeight->"Bold",
+      FontColor->Hue[1.9332877868244881468`4.]],
+     StyleForm[#, FontFamily -> "Courier", FontWeight -> "Bold", FontSize -> 
+      14, FontColor -> Hue[1.9332877868244881468`4.]]& ], 
+    NCache[{Rational[8, 13] Pi, Cos[Rational[3, 26] Pi]}, {
+     1.9332877868244882`, 0.9350162426854148}]], InsetBox[
+    TagBox[
+     StyleBox["\<\"i\"\>",
+      FontFamily->"Courier",
+      FontSize->14,
+      FontWeight->"Bold",
+      FontColor->Hue[2.4166097335306101834`4.]],
+     StyleForm[#, FontFamily -> "Courier", FontWeight -> "Bold", FontSize -> 
+      14, FontColor -> Hue[2.4166097335306101834`4.]]& ], 
+    NCache[{Rational[10, 13] Pi, Sin[Rational[3, 13] Pi]}, {
+     2.4166097335306103`, 0.6631226582407952}]], InsetBox[
+    TagBox[
+     StyleBox["\<\"n\"\>",
+      FontFamily->"Courier",
+      FontSize->14,
+      FontWeight->"Bold",
+      FontColor->Hue[2.8999316802367322202`4.]],
+     StyleForm[#, FontFamily -> "Courier", FontWeight -> "Bold", FontSize -> 
+      14, FontColor -> Hue[2.8999316802367322202`4.]]& ], 
+    NCache[{Rational[12, 13] Pi, Sin[Rational[1, 13] Pi]}, {
+     2.8999316802367323`, 0.23931566428755777`}]], InsetBox[
+    TagBox[
+     StyleBox["\<\"g\"\>",
+      FontFamily->"Courier",
+      FontSize->14,
+      FontWeight->"Bold",
+      FontColor->Hue[3.3832536269428542568`4.]],
+     StyleForm[#, FontFamily -> "Courier", FontWeight -> "Bold", FontSize -> 
+      14, FontColor -> Hue[3.3832536269428542568`4.]]& ], 
+    NCache[{Rational[14, 13] Pi, -Sin[Rational[1, 13] Pi]}, {
+     3.383253626942854, -0.23931566428755777`}]], InsetBox[
+    TagBox[
+     StyleBox["\<\"M\"\>",
+      FontFamily->"Courier",
+      FontSize->14,
+      FontWeight->"Bold",
+      FontColor->Hue[3.8665755736489762935`4.]],
+     StyleForm[#, FontFamily -> "Courier", FontWeight -> "Bold", FontSize -> 
+      14, FontColor -> Hue[3.8665755736489762935`4.]]& ], 
+    NCache[{Rational[16, 13] Pi, -Sin[Rational[3, 13] Pi]}, {
+     3.8665755736489764`, -0.6631226582407952}]], InsetBox[
+    TagBox[
+     StyleBox["\<\"a\"\>",
+      FontFamily->"Courier",
+      FontSize->14,
+      FontWeight->"Bold",
+      FontColor->Hue[4.3498975203550983301`4.]],
+     StyleForm[#, FontFamily -> "Courier", FontWeight -> "Bold", FontSize -> 
+      14, FontColor -> Hue[4.3498975203550983301`4.]]& ], 
+    NCache[{Rational[18, 13] Pi, -Cos[Rational[3, 26] Pi]}, {
+     4.349897520355098, -0.9350162426854148}]], InsetBox[
+    TagBox[
+     StyleBox["\<\"t\"\>",
+      FontFamily->"Courier",
+      FontSize->14,
+      FontWeight->"Bold",
+      FontColor->Hue[4.8332194670612203669`4.]],
+     StyleForm[#, FontFamily -> "Courier", FontWeight -> "Bold", FontSize -> 
+      14, FontColor -> Hue[4.8332194670612203669`4.]]& ], 
+    NCache[{Rational[20, 13] Pi, -Cos[Rational[1, 26] Pi]}, {
+     4.8332194670612205`, -0.992708874098054}]], InsetBox[
+    TagBox[
+     StyleBox["\<\"r\"\>",
+      FontFamily->"Courier",
+      FontSize->14,
+      FontWeight->"Bold",
+      FontColor->Hue[5.3165414137673424035`4.]],
+     StyleForm[#, FontFamily -> "Courier", FontWeight -> "Bold", FontSize -> 
+      14, FontColor -> Hue[5.3165414137673424035`4.]]& ], 
+    NCache[{Rational[22, 13] Pi, -Cos[Rational[5, 26] Pi]}, {
+     5.316541413767342, -0.8229838658936564}]], InsetBox[
+    TagBox[
+     StyleBox["\<\"i\"\>",
+      FontFamily->"Courier",
+      FontSize->14,
+      FontWeight->"Bold",
+      FontColor->Hue[5.7998633604734644403`4.]],
+     StyleForm[#, FontFamily -> "Courier", FontWeight -> "Bold", FontSize -> 
+      14, FontColor -> Hue[5.7998633604734644403`4.]]& ], 
+    NCache[{Rational[24, 13] Pi, -Sin[Rational[2, 13] Pi]}, {
+     5.799863360473465, -0.46472317204376856`}]], InsetBox[
+    TagBox[
+     StyleBox["\<\"x\"\>",
+      FontFamily->"Courier",
+      FontSize->14,
+      FontWeight->"Bold",
+      FontColor->Hue[6.2831853071795864769`4.]],
+     StyleForm[#, FontFamily -> "Courier", FontWeight -> "Bold", FontSize -> 
+      14, FontColor -> Hue[6.2831853071795864769`4.]]& ], 
+    NCache[{2 Pi, 0}, {6.283185307179586, 0}]]}]], "Output",
+ CellChangeTimes->{
+  3.7155099331619487`*^9},ExpressionUUID->"6ce4f6e9-95f5-4ff4-9558-\
+29ea3c0a20ee"]
+}, Open  ]]
+},
+WindowSize->{1280, 677},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+Magnification:>1.2 Inherited,
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1181, 32, 94, "Input",ExpressionUUID->"74365f42-4c2d-48d6-86d4-32340d4a58ae"],
+Cell[1764, 56, 5544, 133, 216, "Output",ExpressionUUID->"6ce4f6e9-95f5-4ff4-9558-29ea3c0a20ee"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

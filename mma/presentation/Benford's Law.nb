@@ -1,0 +1,4446 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    163264,       4438]
+NotebookOptionsPosition[    161093,       4362]
+NotebookOutlinePosition[    161436,       4377]
+CellTagsIndexPosition[    161393,       4374]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[ButtonBox["Benford\[CloseCurlyQuote]s Law",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/BenfordsLaw.html"], None},
+ ButtonNote->"http://mathworld.wolfram.com/BenfordsLaw.html"]], "Title",
+ CellChangeTimes->{{3.7139425988621807`*^9, 3.713942602152018*^9}, {
+  3.71394263422847*^9, 3.71394264259833*^9}, {3.7139449841936407`*^9, 
+  3.7139449882036448`*^9}, {3.7139483651826596`*^9, 3.7139483651826596`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ FormBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Prob", "(", 
+      RowBox[{"mantissa", "\[LessEqual]", 
+       FractionBox["t", "10"]}], ")"}], "=", 
+     RowBox[{
+      SubscriptBox["log", "10"], "t"}]}], ",", 
+    RowBox[{"t", "\[Element]", 
+     RowBox[{"[", 
+      RowBox[{"1", ",", "10"}]}]}]}], ")"}], 
+  TraditionalForm]], "Title"]], "Subchapter",
+ CellChangeTimes->{{3.7139471476204467`*^9, 3.713947275220537*^9}, {
+  3.7139628787834773`*^9, 3.7139629073078194`*^9}},
+ FontSize->36],
+
+Cell[CellGroupData[{
+
+Cell["The logarithmic (Benford) distribution", "Section",
+ CellChangeTimes->{{3.71394266420846*^9, 3.713942678468459*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Log", "[", 
+      RowBox[{"10", ",", 
+       RowBox[{"1", "+", 
+        FractionBox["1", "i"]}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "9"}], "}"}]}], "]"}], "//", "N"}],
+  FontSize->18]], "Input",
+ CellChangeTimes->{{3.713942720956343*^9, 3.7139427226264954`*^9}, {
+   3.7139427701763477`*^9, 3.7139428181263876`*^9}, {3.71394284954082*^9, 
+   3.7139429155306697`*^9}, 3.7139430486523895`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Test One", "Section",
+ CellChangeTimes->{{3.7139429638007717`*^9, 3.71394297834066*^9}, {
+  3.71394383692386*^9, 3.7139438373538527`*^9}}],
+
+Cell[TextData[{
+ StyleBox["1. ",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["k", "n"], TraditionalForm]],
+  FormatType->"TraditionalForm",
+  FontSize->24],
+ StyleBox[", n = 1 : 1000  for k = 2 .",
+  FontSize->24]
+}], "Text",
+ CellChangeTimes->{{3.7139430221724005`*^9, 3.713943037582551*^9}, {
+  3.7139432352523165`*^9, 3.7139432360824842`*^9}, {3.713943290812332*^9, 
+  3.713943298302347*^9}}],
+
+Cell[BoxData[{
+ StyleBox[
+  RowBox[{
+   RowBox[{"testone1", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"IntegerDigits", "[", 
+        SuperscriptBox["2", "i"], "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "1000"}], "}"}]}], "]"}]}], ";"}],
+  FontSize->16], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{"ratioOne1", "=", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"Count", "[", 
+        RowBox[{"testone1", ",", "i"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", "9"}], "}"}]}], "]"}], "1000"], "//", 
+    "N"}]}],
+  FontSize->16]}], "Input",
+ CellChangeTimes->{{3.713942948710623*^9, 3.71394294967078*^9}, {
+   3.7139431123025312`*^9, 3.7139434290608425`*^9}, 3.713943541253996*^9, {
+   3.713943618514001*^9, 3.7139436192341433`*^9}, {3.713943683563944*^9, 
+   3.713943714044005*^9}}],
+
+Cell[TextData[{
+ StyleBox["2. ",
+  FontSize->24],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["k", "n"], TraditionalForm]],
+  FormatType->"TraditionalForm",
+  FontSize->24],
+ StyleBox[", n = 1 : 1000  for k = 3 .",
+  FontSize->24]
+}], "Text",
+ CellChangeTimes->{{3.713943504361107*^9, 3.713943515811053*^9}}],
+
+Cell[BoxData[{
+ StyleBox[
+  RowBox[{
+   RowBox[{"testone2", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"IntegerDigits", "[", 
+        SuperscriptBox["2", "i"], "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "1000"}], "}"}]}], "]"}]}], ";"}],
+  FontSize->16], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{"ratioOne2", "=", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"Count", "[", 
+        RowBox[{"testone2", ",", "i"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", "9"}], "}"}]}], "]"}], "1000"], "//", 
+    "N"}]}],
+  FontSize->16]}], "Input",
+ CellChangeTimes->{{3.71394352616105*^9, 3.7139435436539965`*^9}, {
+  3.7139436230241327`*^9, 3.713943623753996*^9}}],
+
+Cell[TextData[StyleBox["3. n !, n = 1 : 1000 .",
+ FontSize->24]], "Text",
+ CellChangeTimes->{{3.7139435752239847`*^9, 3.7139436001941586`*^9}, {
+  3.7141224415959473`*^9, 3.7141224509798365`*^9}}],
+
+Cell[BoxData[{
+ StyleBox[
+  RowBox[{
+   RowBox[{"testone3", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"IntegerDigits", "[", 
+        SuperscriptBox["2", "i"], "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "1000"}], "}"}]}], "]"}]}], ";"}],
+  FontSize->16], "\[IndentingNewLine]", 
+ StyleBox[
+  RowBox[{"ratioOne3", "=", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"Count", "[", 
+        RowBox[{"testone3", ",", "i"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", "9"}], "}"}]}], "]"}], "1000"], "//", 
+    "N"}]}],
+  FontSize->16]}], "Input",
+ CellChangeTimes->{{3.713943612633974*^9, 3.713943636863966*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Test Two", "Section",
+ CellChangeTimes->{{3.7139437685039454`*^9, 3.713943844714023*^9}}],
+
+Cell[TextData[StyleBox[" 1.Population in countries in Africa",
+ FontSize->24]], "Text",
+ CellChangeTimes->{{3.713943867443841*^9, 3.7139439219638615`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"CountryData", "[", 
+  RowBox[{"\"\<Africa\>\"", ",", "\"\<Name\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.7139439617839727`*^9, 3.71394401735395*^9}, {
+  3.7139440650276585`*^9, 3.7139440803876534`*^9}, {3.713944255702742*^9, 
+  3.713944259632569*^9}},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{"CountryData", "[", 
+  RowBox[{"\"\<Africa\>\"", ",", "\"\<Population\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.7139439617839727`*^9, 3.71394401735395*^9}, {
+  3.7139440650276585`*^9, 3.7139440894876537`*^9}},
+ FontSize->18],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"data1", "=", 
+   RowBox[{"Part", "[", 
+    RowBox[{
+     RowBox[{"CountryData", "[", 
+      RowBox[{"\"\<Africa\>\"", ",", "\"\<Population\>\""}], "]"}], ",", 
+     "All", ",", "1"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"testTwo1", "=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"IntegerDigits", "/@", "data1"}], ")"}], "[", 
+   RowBox[{"[", 
+    RowBox[{"All", ",", "1"}], "]"}], 
+   "]"}]}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.7139439617839727`*^9, 3.71394401735395*^9}, {
+  3.7139440650276585`*^9, 3.71394409499765*^9}, {3.713944156772792*^9, 
+  3.7139442059725914`*^9}, {3.713944239422755*^9, 3.7139442435526104`*^9}, {
+  3.7139444176025496`*^9, 3.713944435166524*^9}},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{"ratioTwo1", "=", 
+  RowBox[{
+   FractionBox[
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"Count", "[", 
+       RowBox[{"testTwo1", ",", "i"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "9"}], "}"}]}], "]"}], 
+    RowBox[{"Length", "[", "testTwo1", "]"}]], "//", "N"}]}]], "Input",
+ CellChangeTimes->{{3.71394429966273*^9, 3.713944364952568*^9}, {
+  3.7139628554453278`*^9, 3.713962855935505*^9}},
+ FontSize->18],
+
+Cell["2.Population in cities in Alaska", "Text",
+ CellChangeTimes->{{3.713944657873596*^9, 3.7139447002035847`*^9}, 
+   3.7139454454586496`*^9},
+ FontSize->24],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CityData", "[", 
+   RowBox[{"{", 
+    RowBox[{"All", ",", "\"\<Alaska\>\"", ",", "\"\<UnitedStates\>\""}], 
+    "}"}], "]"}], "//", "Short"}]], "Input",
+ CellChangeTimes->{{3.7139447495337067`*^9, 3.713944757963732*^9}, 
+   3.7139454505186815`*^9},
+ FontSize->18],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"{", 
+   RowBox[{
+    TemplateBox[{"\"Anchorage\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Anchorage\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Anchorage\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Fairbanks\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Fairbanks\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Fairbanks\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Juneau\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Juneau\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Juneau\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Knik\[Hyphen]Fairview\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"KnikFairview\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"KnikFairview\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"College\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"College\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"College\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Sitka\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Sitka\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}],
+             "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Sitka\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Wasilla\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Wasilla\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Wasilla\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Lakes\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Lakes\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}],
+             "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Lakes\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Ketchikan\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Ketchikan\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Ketchikan\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Tanaina\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Tanaina\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Tanaina\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Kalifornsky\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Kalifornsky\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Kalifornsky\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Meadow Lakes\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"MeadowLakes\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"MeadowLakes\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Kenai\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Kenai\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}],
+             "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Kenai\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Palmer\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Palmer\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Palmer\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Bethel\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Bethel\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Bethel\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Kodiak\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Kodiak\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Kodiak\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Sterling\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Sterling\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Sterling\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Gateway\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Gateway\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Gateway\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Homer\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Homer\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}],
+             "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Homer\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Fishhook\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Fishhook\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Fishhook\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Unalaska\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Unalaska\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Unalaska\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Nikiski\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Nikiski\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Nikiski\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Soldotna\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Soldotna\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Soldotna\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Barrow\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Barrow\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Barrow\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Valdez\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Valdez\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Valdez\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Nome\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Nome\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}], 
+            "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Nome\\\", \\\"Alaska\\\", \\\"UnitedStates\
+\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Big Lake\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"BigLake\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"BigLake\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Kotzebue\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Kotzebue\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Kotzebue\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Butte\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Butte\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}],
+             "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Butte\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Petersburg\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Petersburg\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Petersburg\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Eielson AFB\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"EielsonAFB\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"EielsonAFB\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Seward\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Seward\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Seward\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Ester\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Ester\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}],
+             "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Ester\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Dillingham\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{
+             "\"Dillingham\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}], 
+            "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Dillingham\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Wrangell\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Wrangell\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Wrangell\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Deltana\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Deltana\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Deltana\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Cordova\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Cordova\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Cordova\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"North Pole\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"NorthPole\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"NorthPole\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Prudhoe Bay\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"PrudhoeBay\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"PrudhoeBay\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Houston\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Houston\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Houston\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Willow\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Willow\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Willow\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Ridgeway\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Ridgeway\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Ridgeway\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Bear Creek\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"BearCreek\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"BearCreek\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Fritz Creek\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"FritzCreek\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"FritzCreek\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Anchor Point\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"AnchorPoint\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"AnchorPoint\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Haines\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Haines\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Haines\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Lazy Mountain\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"LazyMountain\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"LazyMountain\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Sutton\[Hyphen]Alpine\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"SuttonAlpine\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"SuttonAlpine\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Metlakatla\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Metlakatla\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Metlakatla\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Cohoe\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Cohoe\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}],
+             "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Cohoe\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Kodiak Station\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"KodiakStation\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"KodiakStation\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Tok\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Tok\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}], 
+            "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Tok\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Craig\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Craig\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}],
+             "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Craig\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Hooper Bay\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"HooperBay\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"HooperBay\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Diamond Ridge\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"DiamondRidge\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"DiamondRidge\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Salcha\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Salcha\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Salcha\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Sand Point\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"SandPoint\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"SandPoint\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Akutan\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Akutan\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Akutan\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Farm Loop\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"FarmLoop\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"FarmLoop\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Healy\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Healy\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}],
+             "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Healy\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"King Cove\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"KingCove\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"KingCove\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Chevak\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Chevak\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Chevak\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Salamatof\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Salamatof\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Salamatof\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Y\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Y\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}], 
+            "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Y\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Delta Junction\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"DeltaJunction\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"DeltaJunction\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Skagway\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Skagway\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Skagway\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Ninilchik\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Ninilchik\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Ninilchik\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Funny River\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"FunnyRiver\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"FunnyRiver\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Talkeetna\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Talkeetna\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Talkeetna\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Mountain Village\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"MountainVillage\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"MountainVillage\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Buffalo Soapstone\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"BuffaloSoapstone\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"BuffaloSoapstone\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Selawik\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Selawik\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Selawik\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Togiak\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Togiak\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Togiak\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Emmonak\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Emmonak\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Emmonak\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Klawock\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Klawock\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Klawock\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Kwethluk\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Kwethluk\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Kwethluk\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Moose Creek\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"MooseCreek\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"MooseCreek\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Knik River\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"KnikRiver\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"KnikRiver\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Hoonah\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Hoonah\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Hoonah\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Alakanuk\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Alakanuk\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Alakanuk\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Pleasant Valley\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"PleasantValley\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"PleasantValley\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Womens Bay\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"WomensBay\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"WomensBay\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Two Rivers\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"TwoRivers\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"TwoRivers\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Unalakleet\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Unalakleet\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Unalakleet\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Point Hope\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"PointHope\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"PointHope\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Quinhagak\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Quinhagak\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Quinhagak\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Gambell\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Gambell\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Gambell\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Savoonga\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Savoonga\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Savoonga\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Noorvik\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Noorvik\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Noorvik\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Fox River\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"FoxRiver\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"FoxRiver\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Yakutat\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Yakutat\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Yakutat\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Kipnuk\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Kipnuk\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Kipnuk\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Akiachak\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Akiachak\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Akiachak\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Kotlik\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Kotlik\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Kotlik\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Toksook Bay\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{
+             "\"ToksookBay\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}], 
+            "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"ToksookBay\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Pilot Station\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"PilotStation\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"PilotStation\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    RowBox[{"\[LeftSkeleton]", "158", "\[RightSkeleton]"}], ",", 
+    TemplateBox[{"\"Sleetmute\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Sleetmute\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Sleetmute\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Eagle\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Eagle\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}],
+             "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Eagle\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Anvik\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Anvik\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}],
+             "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Anvik\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Beaver\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Beaver\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Beaver\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Shageluk\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Shageluk\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Shageluk\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Lowell Point\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"LowellPoint\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"LowellPoint\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"South Naknek\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"SouthNaknek\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"SouthNaknek\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Chignik Lagoon\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"ChignikLagoon\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"ChignikLagoon\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Primrose\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Primrose\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Primrose\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Tonsina\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Tonsina\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Tonsina\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Stevens Village\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"StevensVillage\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"StevensVillage\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Hughes\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Hughes\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Hughes\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Chenega\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Chenega\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Chenega\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Halibut Cove\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"HalibutCove\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"HalibutCove\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Crown Point\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"CrownPoint\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"CrownPoint\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Miller Landing\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"MillerLanding\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"MillerLanding\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Twin Hills\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"TwinHills\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"TwinHills\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Chignik Lake\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"ChignikLake\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"ChignikLake\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Akhiok\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Akhiok\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Akhiok\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Cube Cove\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"CubeCove\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"CubeCove\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Northway\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Northway\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Northway\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Oscarville\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Oscarville\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Oscarville\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Levelock\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Levelock\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Levelock\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Chalkyitsik\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Chalkyitsik\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Chalkyitsik\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Pilot Point\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"PilotPoint\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"PilotPoint\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Eagle Village\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"EagleVillage\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"EagleVillage\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"New Allakaket\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"NewAllakaket\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"NewAllakaket\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Atka\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Atka\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}], 
+            "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Atka\\\", \\\"Alaska\\\", \\\"UnitedStates\
+\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Clark's Point\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"ClarksPoint\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"ClarksPoint\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Platinum\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Platinum\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Platinum\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Dot Lake Village\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"DotLakeVillage\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"DotLakeVillage\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Nelchina\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Nelchina\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Nelchina\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Port Alexander\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"PortAlexander\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"PortAlexander\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Northway Junction\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"NorthwayJunction\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"NorthwayJunction\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Stony River\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"StonyRiver\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"StonyRiver\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Nelson Lagoon\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"NelsonLagoon\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"NelsonLagoon\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Takotna\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Takotna\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Takotna\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Kasaan\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Kasaan\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Kasaan\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Igiugig\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Igiugig\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Igiugig\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Lutak\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Lutak\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}],
+             "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Lutak\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Port Protection\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"PortProtection\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"PortProtection\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Chiniak\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Chiniak\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Chiniak\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Lake Louise\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"LakeLouise\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"LakeLouise\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Four Mile Road\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"FourMileRoad\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"FourMileRoad\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Pedro Bay\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"PedroBay\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"PedroBay\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Edna Bay\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"EdnaBay\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"EdnaBay\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"False Pass\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"FalsePass\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"FalsePass\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Paxson\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Paxson\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Paxson\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Mendeltna\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Mendeltna\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Mendeltna\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Skwentna\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Skwentna\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Skwentna\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Aleneva\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Aleneva\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Aleneva\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Alatna\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Alatna\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Alatna\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Karluk\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Karluk\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Karluk\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Chase\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Chase\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}],
+             "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Chase\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Ferry\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Ferry\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}],
+             "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Ferry\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Birch Creek\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"BirchCreek\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"BirchCreek\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Alcan Border\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"AlcanBorder\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"AlcanBorder\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Whale Pass\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"WhalePass\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"WhalePass\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Tolsona\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Tolsona\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Tolsona\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Lime Village\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"LimeVillage\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"LimeVillage\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"McCarthy\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"McCarthy\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"McCarthy\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Kupreanof\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Kupreanof\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Kupreanof\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Rampart\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Rampart\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Rampart\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Port Clarence\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"PortClarence\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"PortClarence\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Red Devil\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"RedDevil\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"RedDevil\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Thoms Place\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"ThomsPlace\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"ThomsPlace\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Meyers Chuck\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"MeyersChuck\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"MeyersChuck\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Attu Station\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"AttuStation\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"AttuStation\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Elfin Cove\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"ElfinCove\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"ElfinCove\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Beluga\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Beluga\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Beluga\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Nikolski\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Nikolski\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Nikolski\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Susitna\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Susitna\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Susitna\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Game Creek\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"GameCreek\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"GameCreek\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Sunrise\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Sunrise\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Sunrise\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Whitestone Logging Camp\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"WhitestoneLoggingCamp\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"WhitestoneLoggingCamp\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Point Baker\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"PointBaker\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"PointBaker\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Evansville\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Evansville\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Evansville\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Wiseman\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Wiseman\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Wiseman\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Healy Lake\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"HealyLake\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"HealyLake\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Lake Minchumina\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"LakeMinchumina\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"LakeMinchumina\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Livengood\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Livengood\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Livengood\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Dot Lake\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"DotLake\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"DotLake\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Bettles\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Bettles\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Bettles\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Ugashik\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Ugashik\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Ugashik\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Excursion Inlet\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"ExcursionInlet\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"ExcursionInlet\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Coldfoot\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Coldfoot\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Coldfoot\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Ivanof Bay\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"IvanofBay\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"IvanofBay\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Chicken\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Chicken\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Chicken\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Pope\[Hyphen]Vannoy Landing\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"PopeVannoyLanding\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"PopeVannoyLanding\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Petersville\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Petersville\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Petersville\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Portage Creek\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"PortageCreek\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"PortageCreek\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Hobart Bay\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"HobartBay\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"HobartBay\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Flat\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            RowBox[{"\"Flat\"", ",", "\"Alaska\"", ",", "\"UnitedStates\""}], 
+            "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Flat\\\", \\\"Alaska\\\", \\\"UnitedStates\
+\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Chisana\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Chisana\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Chisana\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"], ",", 
+    TemplateBox[{"\"Alpine\"",RowBox[{"Entity", "[", 
+        RowBox[{"\"City\"", ",", 
+          RowBox[{"{", 
+            
+            RowBox[{"\"Alpine\"", ",", "\"Alaska\"", ",", 
+              "\"UnitedStates\""}], "}"}]}], "]"}],
+      "\"Entity[\\\"City\\\", {\\\"Alpine\\\", \\\"Alaska\\\", \
+\\\"UnitedStates\\\"}]\"","\"city\""},
+     "Entity"]}], "}"}],
+  Short]], "Output",
+ CellChangeTimes->{3.713954381326795*^9, 3.7139547323239765`*^9, 
+  3.713954961140786*^9}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"CityData", "[", 
+    RowBox[{"#", ",", "\"\<Population\>\""}], "]"}], "&"}], "/@", 
+  "%"}]], "Input",
+ CellChangeTimes->{{3.7139447495337067`*^9, 3.7139448132235737`*^9}},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TemplateBox[{"301010","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"32469","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"32406","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"14923","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"12964","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"8900","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"8849","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"8364","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"8245","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"8197","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"7850","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"7570","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"7568","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"6515","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"6415","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"6304","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"5617","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"5552","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"5415","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"4679","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"4516","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"4493","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"4445","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"4393","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"3921","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"3788","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"3350","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"3284","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"3246","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"2975","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"2647","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"2528","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"2422","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"2396","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"2364","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"2251","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"2226","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"2178","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"2174","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"2133","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"2102","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"2022","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1956","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1932","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1930","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1811","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1479","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1447","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1405","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1364","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1301","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1258","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1254","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1173","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1156","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1095","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1073","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1041","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1028","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1021","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1015","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1006","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"980","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"956","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"943","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"920","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"883","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"877","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"876","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"872","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"855","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"852","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"842","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"826","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"774","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"757","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"747","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"744","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"734","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"726","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"725","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"719","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"719","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"707","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"702","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"702","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"700","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"690","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"686","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"685","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"662","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"639","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"627","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"619","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"619","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"609","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"593","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"591","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"580","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"579","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"576","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"573","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"572","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"569","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"549","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"544","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"544","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"539","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"529","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"526","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"525","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"521","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"514","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"511","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"508","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"488","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"483","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"481","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"472","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"468","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"455","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"446","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"444","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"439","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"439","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"428","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"426","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"425","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"418","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"417","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"416","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"412","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"408","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"399","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"393","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"384","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"376","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"374","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"373","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"372","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"371","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"363","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"355","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"354","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"344","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"341","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"339","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"337","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"335","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"333","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"328","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"327","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"321","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"318","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"311","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"309","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"309","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"299","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"297","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"296","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"294","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"289","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"277","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"274","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"272","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"272","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"271","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"269","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"265","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"263","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"258","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"255","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"254","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"246","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"245","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"241","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"235","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"234","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"226","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"223","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"221","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"219","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"219","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"218","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"217","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"212","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"210","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"209","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"201","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"198","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"195","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"193","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"192","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"191","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"190","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"189","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"189","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"185","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"182","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"179","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"177","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"177","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"176","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"171","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"170","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"166","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"165","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"165","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"165","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"164","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"164","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"160","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"159","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"155","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"152","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"149","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"147","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"136","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"130","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"127","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"126","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"125","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"125","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"124","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"119","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"119","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"118","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"114","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"113","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"113","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"112","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"112","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"109","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"109","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"109","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"108","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"105","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"104","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"104","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"102","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"98","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"96","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"95","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"95","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"94","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"94","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"93","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"91","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"89","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"89","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"88","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"87","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"86","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"86","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"86","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"85","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"85","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"84","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"83","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"80","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"79","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"78","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"78","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"78","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"78","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"77","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"76","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"76","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"74","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"74","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"74","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"73","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"73","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"72","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"71","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"70","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"69","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"69","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"68","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"67","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"66","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"65","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"64","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"64","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"62","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"59","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"55","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"54","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"54","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"52","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"52","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"51","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"50","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"49","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"48","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"47","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"46","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"43","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"42","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"42","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"40","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"40","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"39","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"37","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"37","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"37","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"37","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"34","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"33","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"33","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"33","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"31","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"30","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"29","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"28","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"27","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"24","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"24","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"23","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"22","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"21","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"21","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"20","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"20","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"18","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"18","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"18","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"18","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"17","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"15","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"15","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"14","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"13","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"13","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"13","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"13","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"12","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"12","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"12","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"10","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"7","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"7","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"6","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"4","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"2","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"1","\"person\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"0","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"0","\"people\"","people","\"People\""},
+    "Quantity"], ",", 
+   TemplateBox[{"0","\"people\"","people","\"People\""},
+    "Quantity"]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.7139547778197985`*^9, {3.713954944517984*^9, 3.713954967242942*^9}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"data2", "=", 
+   RowBox[{"Part", "[", 
+    RowBox[{"%", ",", "All", ",", "1"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"testTwo2", "=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"IntegerDigits", "/@", "data2"}], ")"}], "[", 
+   RowBox[{"[", 
+    RowBox[{"All", ",", "1"}], "]"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.7139447495337067`*^9, 3.7139447522737303`*^9}, {
+   3.7139448209037*^9, 3.713944844813706*^9}, 3.7139549740249534`*^9},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "3", ",", "3", ",", "3", ",", "1", ",", "1", ",", "8", ",", "8", ",", "8", 
+   ",", "8", ",", "8", ",", "7", ",", "7", ",", "7", ",", "6", ",", "6", ",", 
+   "6", ",", "5", ",", "5", ",", "5", ",", "4", ",", "4", ",", "4", ",", "4", 
+   ",", "4", ",", "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "2", ",", 
+   "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", 
+   ",", "2", ",", "2", ",", "2", ",", "2", ",", "1", ",", "1", ",", "1", ",", 
+   "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", 
+   ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", 
+   "1", ",", "1", ",", "9", ",", "9", ",", "9", ",", "9", ",", "8", ",", "8", 
+   ",", "8", ",", "8", ",", "8", ",", "8", ",", "8", ",", "8", ",", "7", ",", 
+   "7", ",", "7", ",", "7", ",", "7", ",", "7", ",", "7", ",", "7", ",", "7", 
+   ",", "7", ",", "7", ",", "7", ",", "7", ",", "6", ",", "6", ",", "6", ",", 
+   "6", ",", "6", ",", "6", ",", "6", ",", "6", ",", "6", ",", "5", ",", "5", 
+   ",", "5", ",", "5", ",", "5", ",", "5", ",", "5", ",", "5", ",", "5", ",", 
+   "5", ",", "5", ",", "5", ",", "5", ",", "5", ",", "5", ",", "5", ",", "5", 
+   ",", "5", ",", "5", ",", "4", ",", "4", ",", "4", ",", "4", ",", "4", ",", 
+   "4", ",", "4", ",", "4", ",", "4", ",", "4", ",", "4", ",", "4", ",", "4", 
+   ",", "4", ",", "4", ",", "4", ",", "4", ",", "4", ",", "3", ",", "3", ",", 
+   "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "3", 
+   ",", "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", 
+   "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "2", 
+   ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", 
+   "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", 
+   ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", 
+   "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", 
+   ",", "2", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", 
+   "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", 
+   ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", 
+   "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", 
+   ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", 
+   "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", 
+   ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", 
+   "9", ",", "9", ",", "9", ",", "9", ",", "9", ",", "9", ",", "9", ",", "9", 
+   ",", "8", ",", "8", ",", "8", ",", "8", ",", "8", ",", "8", ",", "8", ",", 
+   "8", ",", "8", ",", "8", ",", "8", ",", "8", ",", "7", ",", "7", ",", "7", 
+   ",", "7", ",", "7", ",", "7", ",", "7", ",", "7", ",", "7", ",", "7", ",", 
+   "7", ",", "7", ",", "7", ",", "7", ",", "7", ",", "7", ",", "6", ",", "6", 
+   ",", "6", ",", "6", ",", "6", ",", "6", ",", "6", ",", "6", ",", "6", ",", 
+   "5", ",", "5", ",", "5", ",", "5", ",", "5", ",", "5", ",", "5", ",", "5", 
+   ",", "4", ",", "4", ",", "4", ",", "4", ",", "4", ",", "4", ",", "4", ",", 
+   "4", ",", "4", ",", "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "3", 
+   ",", "3", ",", "3", ",", "3", ",", "3", ",", "3", ",", "2", ",", "2", ",", 
+   "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", ",", "2", 
+   ",", "2", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", 
+   "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", 
+   ",", "1", ",", "1", ",", "7", ",", "7", ",", "6", ",", "4", ",", "2", ",", 
+   "1", ",", "0", ",", "0", ",", "0"}], "}"}]], "Output",
+ CellChangeTimes->{3.7139549294360905`*^9, 3.7139549823953857`*^9}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ratioTwo2", "=", 
+  RowBox[{
+   FractionBox[
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"Count", "[", 
+       RowBox[{"testTwo2", ",", "i"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "9"}], "}"}]}], "]"}], 
+    RowBox[{"Length", "[", "testTwo2", "]"}]], "//", "N"}]}]], "Input",
+ CellChangeTimes->{{3.713944905173555*^9, 3.7139449087035007`*^9}, {
+  3.71394495252348*^9, 3.7139449528534775`*^9}, {3.7139550279599524`*^9, 
+  3.7139550394681516`*^9}},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0.25787965616045844`", ",", "0.16332378223495703`", ",", 
+   "0.12320916905444126`", ",", "0.09455587392550144`", ",", 
+   "0.08595988538681948`", ",", "0.06303724928366762`", ",", 
+   "0.09742120343839542`", ",", "0.07163323782234957`", ",", 
+   "0.034383954154727794`"}], "}"}]], "Output",
+ CellChangeTimes->{3.7139550209755335`*^9, 3.71395511440797*^9},
+ FontSize->18]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Test Three", "Section",
+ CellChangeTimes->{{3.714122418067833*^9, 3.7141224246701746`*^9}}],
+
+Cell["1.Financial Information", "Text",
+ CellChangeTimes->{{3.714122463917952*^9, 3.714122489353159*^9}, {
+  3.7141230595591617`*^9, 3.7141230620176077`*^9}},
+ FontSize->24],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FinancialData", "[", "]"}]], "Input",
+ FontSize->18],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   FrameBox[GridBox[{
+      {
+       ItemBox[
+        TagBox[
+         RowBox[{"{", 
+          
+          RowBox[{"\<\"AAAAX\"\>", ",", "\<\"AAAGX\"\>", ",", "\<\"AAAIX\"\>",
+            ",", "\<\"AAAPX\"\>", ",", "\<\"AAARX\"\>", ",", "\<\"AAASX\"\>", 
+           ",", "\<\"AAATX\"\>", ",", "\<\"AAAZX\"\>", ",", "\<\"AABCX\"\>", 
+           ",", "\<\"AABDX\"\>", ",", "\<\"AABFX\"\>", ",", "\<\"AABNX\"\>", 
+           ",", "\<\"AABPX\"\>", ",", "\<\"AABTX\"\>", ",", "\<\"AACCX\"\>", 
+           ",", "\<\"AACFX\"\>", ",", "\<\"AACIX\"\>", ",", "\<\"AACRX\"\>", 
+           ",", "\<\"AACTX\"\>", ",", "\<\"AACYX\"\>", ",", "\<\"AADAX\"\>", 
+           ",", "\<\"AADBX\"\>", ",", "\<\"AADCX\"\>", ",", "\<\"AADDX\"\>", 
+           ",", "\<\"AADEX\"\>", ",", "\<\"AADIX\"\>", ",", "\<\"AADRX\"\>", 
+           ",", "\<\"AADSX\"\>", ",", "\<\"AADTX\"\>", ",", "\<\"AADYX\"\>", 
+           ",", "\<\"AAEBX\"\>", ",", "\<\"AAEPX\"\>", ",", "\<\"AAETX\"\>", 
+           ",", "\<\"AAFPX\"\>", ",", "\<\"AAFTX\"\>", ",", "\<\"AAGAX\"\>", 
+           ",", "\<\"AAGOX\"\>", ",", "\<\"AAGPX\"\>", ",", "\<\"AAGRX\"\>", 
+           ",", "\<\"AAGTX\"\>", ",", 
+           TemplateBox[{"88372"},
+            "OutputSizeLimit`Skeleton",
+            DisplayFunction->(FrameBox[
+              RowBox[{"\" \[CenterEllipsis]\"", #, "\"\[CenterEllipsis] \""}],
+               Background -> GrayLevel[0.75], 
+              BaseStyle -> {
+               "Deploy", FontColor -> GrayLevel[1], FontSize -> Smaller, 
+                ShowStringCharacters -> False}, BaselinePosition -> Baseline, 
+              ContentPadding -> False, FrameMargins -> {{1, 1}, {1, 2}}, 
+              FrameStyle -> None, RoundingRadius -> 7]& )], 
+           ",", "\<\"Z:XBCNF\"\>", ",", "\<\"Z:XBCNG\"\>", 
+           ",", "\<\"Z:XBCNH\"\>", ",", "\<\"Z:XBCNI\"\>", 
+           ",", "\<\"Z:XBENF\"\>", ",", "\<\"Z:XBENG\"\>", 
+           ",", "\<\"Z:XBENH\"\>", ",", "\<\"Z:XBENI\"\>", 
+           ",", "\<\"Z:XBFOF\"\>", ",", "\<\"Z:XBFOG\"\>", 
+           ",", "\<\"Z:XBFOH\"\>", ",", "\<\"Z:XBFOI\"\>", 
+           ",", "\<\"Z:XBFSF\"\>", ",", "\<\"Z:XBFSG\"\>", 
+           ",", "\<\"Z:XBFSH\"\>", ",", "\<\"Z:XBFSI\"\>", 
+           ",", "\<\"Z:XBIGF\"\>", ",", "\<\"Z:XBIGG\"\>", 
+           ",", "\<\"Z:XBIGH\"\>", ",", "\<\"Z:XBIGI\"\>", 
+           ",", "\<\"Z:XBINF\"\>", ",", "\<\"Z:XBING\"\>", 
+           ",", "\<\"Z:XBINH\"\>", ",", "\<\"Z:XBINI\"\>", 
+           ",", "\<\"Z:XBMDF\"\>", ",", "\<\"Z:XBMDG\"\>", 
+           ",", "\<\"Z:XBMDH\"\>", ",", "\<\"Z:XBMDI\"\>", 
+           ",", "\<\"Z:XBNCF\"\>", ",", "\<\"Z:XBNCG\"\>", 
+           ",", "\<\"Z:XBNCH\"\>", ",", "\<\"Z:XBNCI\"\>", 
+           ",", "\<\"Z:XBPHF\"\>", ",", "\<\"Z:XBPHG\"\>", 
+           ",", "\<\"Z:XBPHH\"\>", ",", "\<\"Z:XBPHI\"\>", 
+           ",", "\<\"Z:XBREF\"\>", ",", "\<\"Z:XBREG\"\>", 
+           ",", "\<\"Z:XBREH\"\>", ",", "\<\"Z:XBREI\"\>"}], "}"}],
+         Short[#, 5]& ],
+        BaseStyle->{Deployed -> False},
+        StripOnInput->False]},
+      {GridBox[{
+         {
+          TagBox[
+           TooltipBox[
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource[
+                "FEStrings", "sizeBriefExplanation"], StandardForm],
+               ImageSizeCache->{65., {3., 9.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "SuggestionsBarCategory",
+             StripOnInput->False],
+            StyleBox[
+             DynamicBox[
+              ToBoxes[
+               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
+               StandardForm]], DynamicUpdating -> True, StripOnInput -> 
+             False]],
+           Annotation[#, 
+            Style[
+             Dynamic[
+              FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
+             DynamicUpdating -> True], "Tooltip"]& ], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{52., {1., 9.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "SuggestionsBarControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{52., {1., 9.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "SuggestionsBarControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 14, 22588147789493000429, 5/2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{62., {1., 9.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "SuggestionsBarControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{62., {1., 9.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "SuggestionsBarControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 14, 22588147789493000429, 5 2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{44., {1., 9.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "SuggestionsBarControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "SuggestionsBarControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 14, 22588147789493000429, Infinity],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{78., {1., 9.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "SuggestionsBarControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "SuggestionsBarControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           ButtonFunction:>FrontEndExecute[{
+              FrontEnd`SetOptions[
+              FrontEnd`$FrontEnd, 
+               FrontEnd`PreferencesSettings -> {"Page" -> "Evaluation"}], 
+              FrontEnd`FrontEndToken["PreferencesDialog"]}],
+           Evaluator->None,
+           Method->"Preemptive"]}
+        },
+        AutoDelete->False,
+        FrameStyle->GrayLevel[0.85],
+        GridBoxDividers->{"Columns" -> {False, {True}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+        GridBoxSpacings->{"Columns" -> {{2}}}]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxItemSize->{
+      "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], 
+         Offset[1.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    Background->RGBColor[0.9657, 0.9753, 0.9802],
+    FrameMargins->{{12, 12}, {0, 15}},
+    FrameStyle->GrayLevel[0.85],
+    RoundingRadius->5,
+    StripOnInput->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  Out[14]]], "Output",
+ CellChangeTimes->{3.7141225075870495`*^9},
+ FontSize->18]
+}, Closed]],
+
+Cell["2.Finance Data in a Company", "Text",
+ CellChangeTimes->{{3.7141225994916844`*^9, 3.7141226211881924`*^9}},
+ FontSize->24],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"rowdata", "=", 
+  RowBox[{"FinancialData", "[", 
+   RowBox[{
+   "\"\<V:AAL\>\"", ",", "\"\<Volume\>\"", ",", "\"\<Jan. 1 2016\>\""}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.7141227329262424`*^9, 3.714122752117957*^9}},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "9", ",", "21"}], "}"}], ",", "444200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "9", ",", "22"}], "}"}], ",", "331600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "9", ",", "23"}], "}"}], ",", "302700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "9", ",", "26"}], "}"}], ",", "145700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "9", ",", "27"}], "}"}], ",", "58200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "9", ",", "28"}], "}"}], ",", "223300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "9", ",", "29"}], "}"}], ",", "43400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "9", ",", "30"}], "}"}], ",", "114900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "3"}], "}"}], ",", "51600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "4"}], "}"}], ",", "36600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "5"}], "}"}], ",", "51800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "6"}], "}"}], ",", "38200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "7"}], "}"}], ",", "19500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "11"}], "}"}], ",", "436700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "12"}], "}"}], ",", "216000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "13"}], "}"}], ",", "104600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "14"}], "}"}], ",", "59100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "17"}], "}"}], ",", "25700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "18"}], "}"}], ",", "33200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "19"}], "}"}], ",", "22300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "20"}], "}"}], ",", "227300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "21"}], "}"}], ",", "89500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "24"}], "}"}], ",", "144100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "25"}], "}"}], ",", "207700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "26"}], "}"}], ",", "57400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "27"}], "}"}], ",", "56200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "28"}], "}"}], ",", "64000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "10", ",", "31"}], "}"}], ",", "98100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "1"}], "}"}], ",", "243800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "2"}], "}"}], ",", "366700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "3"}], "}"}], ",", "1209000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "4"}], "}"}], ",", "202000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "7"}], "}"}], ",", "156900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "8"}], "}"}], ",", "98000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "9"}], "}"}], ",", "359800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "10"}], "}"}], ",", "278000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "11"}], "}"}], ",", "188100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "14"}], "}"}], ",", "39400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "15"}], "}"}], ",", "146600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "16"}], "}"}], ",", "95000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "17"}], "}"}], ",", "138700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "18"}], "}"}], ",", "116900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "21"}], "}"}], ",", "67100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "22"}], "}"}], ",", "388600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "23"}], "}"}], ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "24"}], "}"}], ",", "222300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "25"}], "}"}], ",", "209100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "28"}], "}"}], ",", "823700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "29"}], "}"}], ",", "251200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "11", ",", "30"}], "}"}], ",", "155000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "1"}], "}"}], ",", "301500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "2"}], "}"}], ",", "150200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "5"}], "}"}], ",", "188900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "6"}], "}"}], ",", "126800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "7"}], "}"}], ",", "365700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "8"}], "}"}], ",", "250100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "9"}], "}"}], ",", "198000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "12"}], "}"}], ",", "113800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "13"}], "}"}], ",", "95500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "14"}], "}"}], ",", "90700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "15"}], "}"}], ",", "87300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "16"}], "}"}], ",", "118700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "19"}], "}"}], ",", "406400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "20"}], "}"}], ",", "274900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "21"}], "}"}], ",", "310500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "22"}], "}"}], ",", "340100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "23"}], "}"}], ",", "309400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "28"}], "}"}], ",", "173900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "29"}], "}"}], ",", "161300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2016", ",", "12", ",", "30"}], "}"}], ",", "197000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "3"}], "}"}], ",", "143600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "4"}], "}"}], ",", "158500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "5"}], "}"}], ",", "252000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "6"}], "}"}], ",", "254700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "9"}], "}"}], ",", "78700"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "10"}], "}"}], ",", "212300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "11"}], "}"}], ",", "67200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "12"}], "}"}], ",", "255700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "13"}], "}"}], ",", "228500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "16"}], "}"}], ",", "93300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "17"}], "}"}], ",", "547000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "18"}], "}"}], ",", "322800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "19"}], "}"}], ",", "505000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "20"}], "}"}], ",", "93500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "23"}], "}"}], ",", "113400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "24"}], "}"}], ",", "284600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "25"}], "}"}], ",", "332900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "26"}], "}"}], ",", "150100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "27"}], "}"}], ",", "74400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "30"}], "}"}], ",", "302100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "1", ",", "31"}], "}"}], ",", "196500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "1"}], "}"}], ",", "234300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "2"}], "}"}], ",", "134000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "3"}], "}"}], ",", "107400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "6"}], "}"}], ",", "305000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "7"}], "}"}], ",", "261300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "8"}], "}"}], ",", "218000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "9"}], "}"}], ",", "164300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "10"}], "}"}], ",", "79100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "13"}], "}"}], ",", "383600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "14"}], "}"}], ",", "207200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "15"}], "}"}], ",", "149300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "16"}], "}"}], ",", "192300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "17"}], "}"}], ",", "150700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "21"}], "}"}], ",", "449700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "22"}], "}"}], ",", "266800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "23"}], "}"}], ",", "162100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "24"}], "}"}], ",", "185000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "27"}], "}"}], ",", "127300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "2", ",", "28"}], "}"}], ",", "180500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "1"}], "}"}], ",", "155500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "2"}], "}"}], ",", "43500"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "3"}], "}"}], ",", "84400"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "6"}], "}"}], ",", "895400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "7"}], "}"}], ",", "410600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "8"}], "}"}], ",", "219100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "9"}], "}"}], ",", "126400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "10"}], "}"}], ",", "411800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "13"}], "}"}], ",", "205700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "14"}], "}"}], ",", "124700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "15"}], "}"}], ",", "163700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "16"}], "}"}], ",", "44000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "17"}], "}"}], ",", "113800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "20"}], "}"}], ",", "157100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "21"}], "}"}], ",", "123000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "22"}], "}"}], ",", "648900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "23"}], "}"}], ",", "243700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "24"}], "}"}], ",", "87900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "27"}], "}"}], ",", "160300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "28"}], "}"}], ",", "93800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "29"}], "}"}], ",", "90500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "30"}], "}"}], ",", "86100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "3", ",", "31"}], "}"}], ",", "178800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "3"}], "}"}], ",", "134400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "4"}], "}"}], ",", "194900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "5"}], "}"}], ",", "260000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "6"}], "}"}], ",", "554300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "7"}], "}"}], ",", "341300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "10"}], "}"}], ",", "174200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "11"}], "}"}], ",", "328500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "12"}], "}"}], ",", "182100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "13"}], "}"}], ",", "220800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "17"}], "}"}], ",", "469800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "18"}], "}"}], ",", "293100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "19"}], "}"}], ",", "159400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "20"}], "}"}], ",", "895700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "21"}], "}"}], ",", "1059000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "24"}], "}"}], ",", "309700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "25"}], "}"}], ",", "529800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "26"}], "}"}], ",", "1650600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "27"}], "}"}], ",", "452200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "4", ",", "28"}], "}"}], ",", "1852800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "1"}], "}"}], ",", "217500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "2"}], "}"}], ",", "83700"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "3"}], "}"}], ",", "159800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "4"}], "}"}], ",", "169700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "5"}], "}"}], ",", "104800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "8"}], "}"}], ",", "121700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "9"}], "}"}], ",", "105600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "10"}], "}"}], ",", "101600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "11"}], "}"}], ",", "228700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "12"}], "}"}], ",", "125600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "15"}], "}"}], ",", "123800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "16"}], "}"}], ",", "149800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "17"}], "}"}], ",", "109400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "18"}], "}"}], ",", "251300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "19"}], "}"}], ",", "53700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "23"}], "}"}], ",", "60400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "24"}], "}"}], ",", "162500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "25"}], "}"}], ",", "206400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "26"}], "}"}], ",", "267300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "29"}], "}"}], ",", "204800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "30"}], "}"}], ",", "181700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "5", ",", "31"}], "}"}], ",", "104300"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "1"}], "}"}], ",", "153400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "2"}], "}"}], ",", "279400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "5"}], "}"}], ",", "97500"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "6"}], "}"}], ",", "62000"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "7"}], "}"}], ",", "82200"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "8"}], "}"}], ",", "217900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "9"}], "}"}], ",", "58500"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "12"}], "}"}], ",", "198900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "13"}], "}"}], ",", "133200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "14"}], "}"}], ",", "93800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "15"}], "}"}], ",", "425800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "16"}], "}"}], ",", "106100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "19"}], "}"}], ",", "666400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "20"}], "}"}], ",", "46200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "21"}], "}"}], ",", "267200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "22"}], "}"}], ",", "348000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "23"}], "}"}], ",", "335100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "26"}], "}"}], ",", "260400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "27"}], "}"}], ",", "702500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "28"}], "}"}], ",", "704200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "29"}], "}"}], ",", "263700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "6", ",", "30"}], "}"}], ",", "434100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "4"}], "}"}], ",", "208900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "5"}], "}"}], ",", "224500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "6"}], "}"}], ",", "81000"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "7"}], "}"}], ",", "128600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "10"}], "}"}], ",", "91600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "11"}], "}"}], ",", "60700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "12"}], "}"}], ",", "47700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "13"}], "}"}], ",", "49500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "14"}], "}"}], ",", "143400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "17"}], "}"}], ",", "155400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "18"}], "}"}], ",", "173900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "19"}], "}"}], ",", "33000"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "20"}], "}"}], ",", "88200"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "21"}], "}"}], ",", "148600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "24"}], "}"}], ",", "113700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "25"}], "}"}], ",", "163400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "26"}], "}"}], ",", "118100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "27"}], "}"}], ",", "77400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "28"}], "}"}], ",", "31900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "7", ",", "31"}], "}"}], ",", "53100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "1"}], "}"}], ",", "92900"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "2"}], "}"}], ",", "97300"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "3"}], "}"}], ",", "28400"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "4"}], "}"}], ",", "131900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "8"}], "}"}], ",", "238800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "9"}], "}"}], ",", "113100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "10"}], "}"}], ",", "13600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "11"}], "}"}], ",", "63700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "14"}], "}"}], ",", "78700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "15"}], "}"}], ",", "126500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "16"}], "}"}], ",", "161100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "17"}], "}"}], ",", "134400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "18"}], "}"}], ",", "101500"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "21"}], "}"}], ",", "43400"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "22"}], "}"}], ",", "142100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "23"}], "}"}], ",", "63600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "24"}], "}"}], ",", "49100"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "25"}], "}"}], ",", "71800"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "28"}], "}"}], ",", "76700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "29"}], "}"}], ",", "97600"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "30"}], "}"}], ",", "222700"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "8", ",", "31"}], "}"}], ",", "297900"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "9", ",", "1"}], "}"}], ",", "64700"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "9", ",", "5"}], "}"}], ",", "59100"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "9", ",", "6"}], "}"}], ",", "86200"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "9", ",", "7"}], "}"}], ",", "97700"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2017", ",", "9", ",", "8"}], "}"}], ",", "94200"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.7141226284908853`*^9, {3.7141227471668615`*^9, 3.7141227713993373`*^9}},
+ FontSize->18]
+}, Closed]],
+
+Cell["3.Our Test", "Text",
+ CellChangeTimes->{{3.7141226480173063`*^9, 3.7141226589034724`*^9}},
+ FontSize->24],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"testThree", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"IntegerDigits", "/@", 
+      RowBox[{"(", 
+       RowBox[{"rowdata", "[", 
+        RowBox[{"[", 
+         RowBox[{"All", ",", "2"}], "]"}], "]"}], ")"}]}], ")"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "1"}], "]"}], "]"}]}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.7141228134560657`*^9, 3.7141229428210216`*^9}},
+ FontSize->18],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "4", ",", "3", ",", "3", ",", "1", ",", "5", ",", "2", ",", "4", ",", "1", 
+   ",", "5", ",", "3", ",", "5", ",", "3", ",", "1", ",", "4", ",", "2", ",", 
+   "1", ",", "5", ",", "2", ",", "3", ",", "2", ",", "2", ",", "8", ",", "1", 
+   ",", "2", ",", "5", ",", "5", ",", "6", ",", "9", ",", "2", ",", "3", ",", 
+   "1", ",", "2", ",", "1", ",", "9", ",", "3", ",", "2", ",", "1", ",", "3", 
+   ",", "1", ",", "9", ",", "1", ",", "1", ",", "6", ",", "3", ",", "0", ",", 
+   "2", ",", "2", ",", "8", ",", "2", ",", "1", ",", "3", ",", "1", ",", "1", 
+   ",", "1", ",", "3", ",", "2", ",", "1", ",", "1", ",", "9", ",", "9", ",", 
+   "8", ",", "1", ",", "4", ",", "2", ",", "3", ",", "3", ",", "3", ",", "1", 
+   ",", "1", ",", "1", ",", "1", ",", "1", ",", "2", ",", "2", ",", "7", ",", 
+   "2", ",", "6", ",", "2", ",", "2", ",", "9", ",", "5", ",", "3", ",", "5", 
+   ",", "9", ",", "1", ",", "2", ",", "3", ",", "1", ",", "7", ",", "3", ",", 
+   "1", ",", "2", ",", "1", ",", "1", ",", "3", ",", "2", ",", "2", ",", "1", 
+   ",", "7", ",", "3", ",", "2", ",", "1", ",", "1", ",", "1", ",", "4", ",", 
+   "2", ",", "1", ",", "1", ",", "1", ",", "1", ",", "1", ",", "4", ",", "8", 
+   ",", "8", ",", "4", ",", "2", ",", "1", ",", "4", ",", "2", ",", "1", ",", 
+   "1", ",", "4", ",", "1", ",", "1", ",", "1", ",", "6", ",", "2", ",", "8", 
+   ",", "1", ",", "9", ",", "9", ",", "8", ",", "1", ",", "1", ",", "1", ",", 
+   "2", ",", "5", ",", "3", ",", "1", ",", "3", ",", "1", ",", "2", ",", "4", 
+   ",", "2", ",", "1", ",", "8", ",", "1", ",", "3", ",", "5", ",", "1", ",", 
+   "4", ",", "1", ",", "2", ",", "8", ",", "1", ",", "1", ",", "1", ",", "1", 
+   ",", "1", ",", "1", ",", "2", ",", "1", ",", "1", ",", "1", ",", "1", ",", 
+   "2", ",", "5", ",", "6", ",", "1", ",", "2", ",", "2", ",", "2", ",", "1", 
+   ",", "1", ",", "1", ",", "2", ",", "9", ",", "6", ",", "8", ",", "2", ",", 
+   "5", ",", "1", ",", "1", ",", "9", ",", "4", ",", "1", ",", "6", ",", "4", 
+   ",", "2", ",", "3", ",", "3", ",", "2", ",", "7", ",", "7", ",", "2", ",", 
+   "4", ",", "2", ",", "2", ",", "8", ",", "1", ",", "9", ",", "6", ",", "4", 
+   ",", "4", ",", "1", ",", "1", ",", "1", ",", "3", ",", "8", ",", "1", ",", 
+   "1", ",", "1", ",", "1", ",", "7", ",", "3", ",", "5", ",", "9", ",", "9", 
+   ",", "2", ",", "1", ",", "2", ",", "1", ",", "1", ",", "6", ",", "7", ",", 
+   "1", ",", "1", ",", "1", ",", "1", ",", "4", ",", "1", ",", "6", ",", "4", 
+   ",", "7", ",", "7", ",", "9", ",", "2", ",", "2", ",", "6", ",", "5", ",", 
+   "8", ",", "9", ",", "9"}], "}"}]], "Output",
+ CellChangeTimes->{3.714122943873195*^9},
+ FontSize->18]
+}, Closed]],
+
+Cell[BoxData[
+ RowBox[{"ratioTwo2", "=", 
+  RowBox[{
+   FractionBox[
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"Count", "[", 
+       RowBox[{"testThree", ",", "i"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "9"}], "}"}]}], "]"}], 
+    RowBox[{"Length", "[", "testThree", "]"}]], "//", "N"}]}]], "Input",
+ CellChangeTimes->{{3.7141229658930264`*^9, 3.7141229743536425`*^9}},
+ FontSize->18]
+}, Open  ]],
+
+Cell["Free Style", "Section",
+ CellChangeTimes->{{3.7141231137399893`*^9, 3.714123130934062*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1520, 805},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (August 17, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 452, 7, 101, "Title"],
+Cell[CellGroupData[{
+Cell[1057, 33, 530, 16, 95, "Subchapter"],
+Cell[CellGroupData[{
+Cell[1612, 53, 122, 1, 70, "Section"],
+Cell[1737, 56, 513, 14, 61, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2287, 75, 144, 2, 70, "Section"],
+Cell[2434, 79, 412, 13, 41, "Text"],
+Cell[2849, 94, 957, 28, 87, "Input"],
+Cell[3809, 124, 308, 11, 41, "Text"],
+Cell[4120, 137, 832, 26, 87, "Input"],
+Cell[4955, 165, 196, 3, 41, "Text"],
+Cell[5154, 170, 780, 25, 87, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5971, 200, 95, 1, 70, "Section"],
+Cell[6069, 203, 155, 2, 41, "Text"],
+Cell[6227, 207, 295, 6, 37, "Input"],
+Cell[6525, 215, 252, 5, 37, "Input"],
+Cell[6780, 222, 757, 19, 94, "Input"],
+Cell[7540, 243, 472, 13, 67, "Input"],
+Cell[8015, 258, 159, 3, 41, "Text"],
+Cell[CellGroupData[{
+Cell[8199, 265, 298, 8, 37, "Input"],
+Cell[8500, 275, 70661, 1707, 500, "Output"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[79198, 1987, 234, 7, 31, "Input"],
+Cell[79435, 1996, 28714, 702, 731, "Output"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[108186, 2703, 504, 14, 60, "Input"],
+Cell[108693, 2719, 3798, 50, 107, "Output"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[112528, 2774, 527, 14, 61, "Input"],
+Cell[113058, 2790, 414, 9, 37, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[113521, 2805, 97, 1, 70, "Section"],
+Cell[113621, 2808, 173, 3, 41, "Text"],
+Cell[CellGroupData[{
+Cell[113819, 2815, 76, 2, 37, "Input"],
+Cell[113898, 2819, 10081, 237, 160, "Output"]
+}, Closed]],
+Cell[123994, 3059, 128, 2, 38, "Text"],
+Cell[CellGroupData[{
+Cell[124147, 3065, 263, 7, 37, "Input"],
+Cell[124413, 3074, 32818, 1203, 1354, "Output"]
+}, Closed]],
+Cell[157246, 4280, 111, 2, 38, "Text"],
+Cell[CellGroupData[{
+Cell[157382, 4286, 454, 14, 66, "Input"],
+Cell[157839, 4302, 2671, 37, 88, "Output"]
+}, Closed]],
+Cell[160525, 4342, 428, 12, 61, "Input"]
+}, Open  ]],
+Cell[160968, 4357, 97, 1, 70, "Section"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

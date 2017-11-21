@@ -1,0 +1,13 @@
+clc;
+clear;
+tic;
+k=5;
+cond_ctr=0.2;
+tol=1e-9;
+maxit=1e9;
+A=rand(k,k);
+A=A*diag(rand(k,1))*A';
+[eig_s,eig_v]=powmeth(A,tol,maxit);
+[~,D]=eig(A);
+max(sort(diag(D))-sort(eig_s))
+toc;

@@ -1,0 +1,2603 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[    106431,       2594]
+NotebookOptionsPosition[    101834,       2452]
+NotebookOutlinePosition[    103438,       2502]
+CellTagsIndexPosition[    103102,       2490]
+WindowFrame->Normal
+ContainsDynamic->True *)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Radial Engine", "DemoTitle",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.387164470296875*^9, 3.387164472015625*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["", "InitializationSection"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"crank", "[", "\[Mu]_", "]"}], ":=", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]", "=", 
+       RowBox[{"\[Pi]", " ", "\[Mu]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"GrayLevel", "[", ".3", "]"}], ",", 
+       RowBox[{"Specularity", "[", 
+        RowBox[{"Red", ",", "10"}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"Cylinder", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "1", ",", "0"}], "}"}]}], "}"}], ",", "1.5"}], 
+        "]"}], ",", 
+       RowBox[{"(*", " ", "Crankwheel", " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"Cylinder", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", 
+             RowBox[{"-", ".1"}], ",", "0"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "3", ",", "0"}], "}"}]}], "}"}], ",", ".3"}], 
+        "]"}], ",", 
+       RowBox[{"(*", " ", "Crankshaft", " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"Cylinder", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Cos", "[", 
+              RowBox[{"\[Theta]", "+", "\[Pi]"}], "]"}], ",", 
+             RowBox[{"-", ".2"}], ",", 
+             RowBox[{"Sin", "[", 
+              RowBox[{"\[Theta]", "+", "\[Pi]"}], "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Cos", "[", 
+              RowBox[{"\[Theta]", "+", "\[Pi]"}], "]"}], ",", "1.2", ",", 
+             RowBox[{"Sin", "[", 
+              RowBox[{"\[Theta]", "+", "\[Pi]"}], "]"}]}], "}"}]}], "}"}], 
+         ",", ".3"}], "]"}], ",", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Opposite", " ", "of", " ", "hub", " ", "pin"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"GrayLevel", "[", ".2", "]"}], ",", 
+       RowBox[{"Specularity", "[", 
+        RowBox[{"LightBlue", ",", "10"}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"Cylinder", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Cos", "[", "\[Theta]", "]"}], ",", 
+             RowBox[{"-", "1.5"}], ",", 
+             RowBox[{"Sin", "[", "\[Theta]", "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Cos", "[", "\[Theta]", "]"}], ",", "1.2", ",", 
+             RowBox[{"Sin", "[", "\[Theta]", "]"}]}], "}"}]}], "}"}], ",", 
+         ".3"}], "]"}]}], " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"Hub", " ", "pin"}], " ", "*)"}], "\[IndentingNewLine]", 
+      "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"mz", "[", "\[Theta]_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"(", 
+      SqrtBox[
+       RowBox[{"25", "-", 
+        SuperscriptBox[
+         RowBox[{"Cos", "[", "\[Theta]", "]"}], "2"]}]], ")"}], "+", 
+     RowBox[{"Sin", "[", "\[Theta]", "]"}]}]}], ";"}], 
+  RowBox[{"(*", " ", 
+   RowBox[{"Master", " ", "rod", " ", "z", " ", "coordinates"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"md", "[", "\[Theta]_", "]"}], ":=", 
+    RowBox[{"ArcSin", "[", 
+     FractionBox[
+      RowBox[{"Cos", "[", "\[Theta]", "]"}], "5."], "]"}]}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Master", " ", "rod", " ", "angle"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"hub", "[", "\[Mu]_", "]"}], ":=", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Theta]", "=", 
+        RowBox[{"\[Pi]", " ", "\[Mu]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"GrayLevel", "[", ".2", "]"}], ",", 
+        RowBox[{"Specularity", "[", 
+         RowBox[{"LightBlue", ",", "10"}], "]"}], ",", "\[IndentingNewLine]", 
+        
+        RowBox[{"Cylinder", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Cos", "[", "\[Theta]", "]"}], ",", 
+              RowBox[{"-", ".6"}], ",", 
+              RowBox[{"Sin", "[", "\[Theta]", "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Cos", "[", "\[Theta]", "]"}], ",", 
+              RowBox[{"-", ".4"}], ",", 
+              RowBox[{"Sin", "[", "\[Theta]", "]"}]}], "}"}]}], "}"}], ",", 
+          "1.4"}], "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"Cylinder", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Cos", "[", "\[Theta]", "]"}], ",", 
+              RowBox[{"-", "1.4"}], ",", 
+              RowBox[{"Sin", "[", "\[Theta]", "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Cos", "[", "\[Theta]", "]"}], ",", 
+              RowBox[{"-", "1.2"}], ",", 
+              RowBox[{"Sin", "[", "\[Theta]", "]"}]}], "}"}]}], "}"}], ",", 
+          "1.4"}], "]"}]}], "\[IndentingNewLine]", "}"}]}], "]"}]}], ";"}], 
+  RowBox[{"(*", " ", "Hub", " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"rc", "[", 
+     RowBox[{"\[Theta]_", ",", "k_", ",", "n_"}], "]"}], ":=", 
+    RowBox[{
+     RowBox[{"RotationTransform", "[", 
+      RowBox[{
+       RowBox[{
+        FractionBox["\[Pi]", "2"], "+", 
+        RowBox[{"md", "[", "\[Theta]", "]"}], "+", 
+        FractionBox[
+         RowBox[{"2", " ", "\[Pi]", " ", 
+          RowBox[{"(", 
+           RowBox[{"k", "-", "1"}], ")"}]}], "n"]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Cos", "[", "\[Theta]", "]"}], ",", "0", ",", 
+         RowBox[{"Sin", "[", "\[Theta]", "]"}]}], "}"}]}], "]"}], "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Cos", "[", "\[Theta]", "]"}], "+", "1"}], ",", "0", ",", 
+       RowBox[{"Sin", "[", "\[Theta]", "]"}]}], "}"}], "]"}]}], ";"}], 
+  RowBox[{"(*", " ", 
+   RowBox[{"Rod", " ", "connector", " ", "center"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"acf", "[", 
+     RowBox[{"\[Theta]_", ",", "k_", ",", "n_"}], "]"}], ":=", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Rho]", "=", 
+        RowBox[{
+         FractionBox[
+          RowBox[{"2", " ", "\[Pi]", " ", 
+           RowBox[{"(", 
+            RowBox[{"k", "-", "1"}], ")"}]}], "n"], "+", 
+         FractionBox["\[Pi]", "2"]}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Quiet", "@", 
+       RowBox[{
+        RowBox[{"Solve", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Norm", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"r", " ", 
+                RowBox[{"Cos", "[", "\[Rho]", "]"}]}], ",", "0", ",", 
+               RowBox[{"r", " ", 
+                RowBox[{"Sin", "[", "\[Rho]", "]"}]}]}], "}"}], "-", 
+             RowBox[{"rc", "[", 
+              RowBox[{"\[Theta]", ",", "k", ",", "n"}], "]"}]}], "]"}], 
+           "\[Equal]", "4"}], ",", "r"}], "]"}], "[", 
+        RowBox[{"[", 
+         RowBox[{"2", ",", "1", ",", "2"}], "]"}], "]"}]}]}], 
+     "\[IndentingNewLine]", "]"}]}], ";"}], 
+  RowBox[{"(*", " ", 
+   RowBox[{"Articulate", " ", "rod", " ", "coordinate", " ", "factor"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"cylinders", "[", 
+    RowBox[{"\[Mu]_", ",", "n_", ",", "c_", ",", "l_"}], "]"}], ":=", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]", "=", 
+       RowBox[{"\[Pi]", " ", "\[Mu]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{"Table", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"With", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"p", "=", 
+             RowBox[{"rc", "[", 
+              RowBox[{"\[Theta]", ",", "i", ",", "n"}], "]"}]}], ",", 
+            RowBox[{"q", "=", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Cos", "[", 
+                RowBox[{
+                 FractionBox[
+                  RowBox[{"2", " ", "\[Pi]", " ", 
+                   RowBox[{"(", 
+                    RowBox[{"i", "-", "1"}], ")"}]}], "n"], "+", 
+                 FractionBox["\[Pi]", "2"]}], "]"}], ",", "0", ",", 
+               RowBox[{"Sin", "[", 
+                RowBox[{
+                 FractionBox[
+                  RowBox[{"2", " ", "\[Pi]", " ", 
+                   RowBox[{"(", 
+                    RowBox[{"i", "-", "1"}], ")"}]}], "n"], "+", 
+                 FractionBox["\[Pi]", "2"]}], "]"}]}], "}"}]}], ",", 
+            RowBox[{"r", "=", 
+             RowBox[{"acf", "[", 
+              RowBox[{"\[Theta]", ",", "i", ",", "n"}], "]"}]}]}], "}"}], ",",
+           "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"FaceForm", "[", 
+             RowBox[{
+              RowBox[{"Directive", "[", 
+               RowBox[{"LightBlue", ",", 
+                RowBox[{"Specularity", "[", 
+                 RowBox[{"White", ",", "50"}], "]"}]}], "]"}], ",", "Black"}],
+              "]"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"i", "\[Equal]", "1"}], ",", "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Cylinder", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"p", "+", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", "1.3"}], ",", "0"}], "}"}]}], ",", 
+                    RowBox[{"p", "+", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", ".5"}], ",", "0"}], "}"}]}]}], "}"}], ",", 
+                  ".2"}], "]"}], " ", ",", "\[IndentingNewLine]", 
+                RowBox[{"Cylinder", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Cos", "[", "\[Theta]", "]"}], ",", 
+                    RowBox[{"-", ".9"}], ",", 
+                    RowBox[{"Sin", "[", "\[Theta]", "]"}]}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"r", " ", "q"}], "+", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", ".9"}], ",", "0"}], "}"}]}]}], "}"}], ",", 
+                  ".2"}], "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Cylinder", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"p", "+", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", "1.5"}], ",", "0"}], "}"}]}], ",", 
+                    RowBox[{"p", "+", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", ".3"}], ",", "0"}], "}"}]}]}], "}"}], ",", 
+                  ".2"}], "]"}], ",", "\[IndentingNewLine]", 
+                RowBox[{"Cylinder", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"p", "+", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", ".9"}], ",", "0"}], "}"}]}], ",", 
+                    RowBox[{
+                    RowBox[{"r", " ", "q"}], "+", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", ".9"}], ",", "0"}], "}"}]}]}], "}"}], ",", 
+                  ".2"}], "]"}]}], "}"}]}], "\[IndentingNewLine]", "]"}], ",",
+             
+            RowBox[{"(*", " ", 
+             RowBox[{"Rod", " ", "and", " ", "pin"}], " ", "*)"}], 
+            "\[IndentingNewLine]", 
+            RowBox[{"Cylinder", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"p", "+", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", 
+                   RowBox[{"-", ".9"}], ",", "0"}], "}"}]}], ",", 
+                RowBox[{
+                 RowBox[{"r", " ", "q"}], "+", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", 
+                   RowBox[{"-", ".9"}], ",", "0"}], "}"}]}]}], "}"}], ",", 
+              ".2"}], "]"}], ",", 
+            RowBox[{"(*", " ", "Rod", " ", "*)"}], "\[IndentingNewLine]", 
+            RowBox[{"Cylinder", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"r", " ", "q"}], "+", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", 
+                   RowBox[{"-", "1.9"}], ",", "0"}], "}"}]}], ",", 
+                RowBox[{
+                 RowBox[{"r", " ", "q"}], "+", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", ".1", ",", "0"}], "}"}]}]}], "}"}], ",", 
+              ".2"}], "]"}], ",", 
+            RowBox[{"(*", " ", 
+             RowBox[{"Piston", " ", "pin"}], " ", "*)"}], 
+            "\[IndentingNewLine]", 
+            RowBox[{"With", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"\[Nu]", "=", 
+                RowBox[{"Mod", "[", 
+                 RowBox[{
+                  RowBox[{"\[Mu]", "+", ".5", "-", 
+                   RowBox[{"4", 
+                    RowBox[{
+                    RowBox[{"Mod", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Ceiling", "[", 
+                    RowBox[{"n", "/", "2"}], "]"}], 
+                    RowBox[{"(", 
+                    RowBox[{"i", "-", "1"}], ")"}]}], ",", "n"}], "]"}], "/", 
+                    "n"}]}]}], ",", "4"}], "]"}]}], "}"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"{", "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{
+                  ".8", "\[LessEqual]", "\[Nu]", "\[LessEqual]", "1.2"}], ",",
+                   "\[IndentingNewLine]", 
+                  RowBox[{"Directive", "[", 
+                   RowBox[{
+                    RowBox[{"RGBColor", "[", 
+                    RowBox[{"0.13", ",", "0.25", ",", "0.35"}], "]"}], ",", 
+                    RowBox[{"Specularity", "[", 
+                    RowBox[{"Green", ",", "30"}], "]"}], ",", 
+                    RowBox[{"Glow", "[", 
+                    RowBox[{"RGBColor", "[", 
+                    RowBox[{
+                    FractionBox["1", "2"], ",", "0", ",", "0"}], "]"}], 
+                    "]"}]}], "]"}], ",", "\[IndentingNewLine]", 
+                  RowBox[{"Directive", "[", 
+                   RowBox[{
+                    RowBox[{"RGBColor", "[", 
+                    RowBox[{"0.13", ",", "0.25", ",", "0.35"}], "]"}], ",", 
+                    RowBox[{"Specularity", "[", 
+                    RowBox[{"Green", ",", "30"}], "]"}]}], "]"}]}], 
+                 "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+                RowBox[{"Cylinder", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"r", "-", ".4"}], ")"}], "q"}], "+", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", ".9"}], ",", "0"}], "}"}]}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"r", "+", "1"}], ")"}], "q"}], "+", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", ".9"}], ",", "0"}], "}"}]}]}], "}"}], ",", 
+                  "1"}], "]"}], ",", 
+                RowBox[{"(*", " ", 
+                 RowBox[{"Piston", " ", "head"}], " ", "*)"}], 
+                "\[IndentingNewLine]", 
+                RowBox[{"If", "[", 
+                 RowBox[{"l", ",", 
+                  RowBox[{"{", "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{"Which", "[", 
+                    RowBox[{
+                    RowBox[{"0", "\[LessEqual]", "\[Nu]", "<", "1"}], ",", 
+                    "Orange", ",", 
+                    RowBox[{"1", "\[LessEqual]", "\[Nu]", "<", "2"}], ",", 
+                    "Red", ",", 
+                    RowBox[{"2", "\[LessEqual]", "\[Nu]", "<", "3"}], ",", 
+                    "Blue", ",", 
+                    RowBox[{"3", "\[LessEqual]", "\[Nu]", "<", "4"}], ",", 
+                    "Yellow"}], "]"}], ",", "\[IndentingNewLine]", 
+                    RowBox[{"Sphere", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"7.5", "q"}], "+", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", ".9"}], ",", "0"}], "}"}]}], ",", ".2"}], 
+                    "]"}]}], "\[IndentingNewLine]", "}"}], ",", 
+                  RowBox[{"{", "}"}]}], "]"}]}], "\[IndentingNewLine]", 
+               "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{"c", ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"ControlActive", "[", 
+                 RowBox[{
+                  RowBox[{"FaceForm", "[", "]"}], ",", 
+                  RowBox[{"FaceForm", "[", 
+                   RowBox[{
+                    RowBox[{"Opacity", "[", ".4", "]"}], ",", "White"}], 
+                   "]"}]}], "]"}], ",", 
+                RowBox[{"Cylinder", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"3.4", "q"}], "+", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", ".9"}], ",", "0"}], "}"}]}], ",", 
+                    RowBox[{
+                    RowBox[{"7.1", "q"}], "+", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", ".9"}], ",", "0"}], "}"}]}]}], "}"}], ",", 
+                  "1.1"}], "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+              RowBox[{"{", "}"}]}], "]"}]}], 
+           RowBox[{"(*", " ", "Cylinder", " ", "*)"}], "\[IndentingNewLine]", 
+           "}"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "n"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+      "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"is", "[", "col_", "]"}], ":=", 
+   RowBox[{"Graphics", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"col", ",", 
+       RowBox[{"EdgeForm", "[", "Black", "]"}], ",", 
+       RowBox[{"Disk", "[", "]"}]}], "}"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "10"}], ",", 
+     RowBox[{"BaselinePosition", "\[Rule]", "Bottom"}]}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.3871253241406603`*^9, 3.3871255482031603`*^9}, {
+   3.3871255875625353`*^9, 3.3871256540312853`*^9}, {3.3871258907500353`*^9, 
+   3.3871258961562853`*^9}, {3.3871272438750353`*^9, 
+   3.3871272440469103`*^9}, {3.3871276520781603`*^9, 
+   3.3871276521875353`*^9}, {3.3871278271094103`*^9, 
+   3.3871278271562853`*^9}, {3.387153282484375*^9, 3.387153398234375*^9}, {
+   3.3871534475*^9, 3.38715348596875*^9}, {3.387153628046875*^9, 
+   3.387153628921875*^9}, {3.38715438409375*^9, 3.387154384234375*^9}, 
+   3.387154682625*^9, {3.387156383625*^9, 3.387156384015625*^9}, {
+   3.3871566798125*^9, 3.3871566883125*^9}, {3.387158171*^9, 
+   3.387158253546875*^9}, {3.387158346171875*^9, 3.38715838434375*^9}, {
+   3.387158547015625*^9, 3.387158550015625*^9}, {3.387162157109375*^9, 
+   3.38716218575*^9}, 3.38716221934375*^9, {3.387162873125*^9, 
+   3.387162914140625*^9}, {3.387163153703125*^9, 3.387163153953125*^9}, {
+   3.387163284140625*^9, 3.387163415125*^9}, {3.387164487640625*^9, 
+   3.387164525640625*^9}, {3.38716520565625*^9, 3.3871652380625*^9}, {
+   3.3871654615625*^9, 3.3871655386875*^9}, {3.38716557334375*^9, 
+   3.387165580875*^9}, 3.387165658078125*^9, {3.3871657995*^9, 
+   3.387165800296875*^9}, 3.3871658303125*^9, {3.387166123921875*^9, 
+   3.3871661486875*^9}, {3.387166220515625*^9, 3.3871662465625*^9}, 
+   3.387166326375*^9, {3.387166383359375*^9, 3.3871663900625*^9}, {
+   3.387166493625*^9, 3.387166661078125*^9}, {3.38716712784375*^9, 
+   3.38716713434375*^9}, {3.387167325953125*^9, 3.387167336046875*^9}, {
+   3.387167572890625*^9, 3.387167590515625*^9}, 3.387167635984375*^9, {
+   3.387167730671875*^9, 3.38716774584375*^9}, 3.38716778246875*^9, {
+   3.38716819653125*^9, 3.38716820334375*^9}, {3.387168251515625*^9, 
+   3.387168254015625*^9}, {3.38716839840625*^9, 3.387168426515625*^9}, {
+   3.387168471375*^9, 3.3871684839375*^9}, {3.38716851615625*^9, 
+   3.387168543078125*^9}, {3.387168639921875*^9, 3.38716871528125*^9}, {
+   3.3871691570625*^9, 3.387169164625*^9}, {3.38716920965625*^9, 
+   3.387169215859375*^9}, {3.387169564796875*^9, 3.387169571953125*^9}, 
+   3.38716970746875*^9, 3.387169811953125*^9, {3.387169853125*^9, 
+   3.38716985609375*^9}, {3.387169895390625*^9, 3.387169895671875*^9}, {
+   3.38717024315625*^9, 3.387170245546875*^9}, {3.387170317859375*^9, 
+   3.387170348703125*^9}, 3.387170385484375*^9, 3.387170443765625*^9, 
+   3.3871704836875*^9, {3.38717059025*^9, 3.387170612328125*^9}, {
+   3.38717073421875*^9, 3.387170889796875*^9}, {3.387171013296875*^9, 
+   3.387171059359375*^9}, {3.38717111303125*^9, 3.38717113353125*^9}, {
+   3.387171214734375*^9, 3.38717123609375*^9}, {3.387171267296875*^9, 
+   3.387171269578125*^9}, {3.3873045810140395`*^9, 3.3873045983423862`*^9}},
+ CellID->185491449]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Column", "[", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Graphics3D", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"EdgeForm", "[", 
+            RowBox[{"Opacity", "[", ".3", "]"}], "]"}], ",", 
+           RowBox[{"crank", "[", "\[Mu]", "]"}], ",", 
+           RowBox[{"hub", "[", "\[Mu]", "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"cylinders", "[", 
+            RowBox[{"\[Mu]", ",", "n", ",", "c", ",", "l"}], "]"}]}], 
+          "\[IndentingNewLine]", "}"}], ",", 
+         RowBox[{"Lighting", "\[Rule]", "\"\<Neutral\>\""}], ",", 
+         RowBox[{"Background", "\[Rule]", 
+          RowBox[{"GrayLevel", "[", ".75", "]"}]}], ",", 
+         RowBox[{"Boxed", "\[Rule]", "False"}], ",", 
+         RowBox[{"PlotRange", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "3"}], ",", "3"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "10"}], ",", "10"}], "}"}]}], "}"}]}], ",", 
+         RowBox[{"ViewAngle", "\[Rule]", "0.23281565895710432`"}], ",", 
+         RowBox[{"ImageSize", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"350", ",", "350"}], "}"}]}]}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"l", ",", "\[IndentingNewLine]", 
+         RowBox[{"Style", "[", 
+          RowBox[{
+           RowBox[{"Grid", "[", 
+            RowBox[{"{", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"is", "[", "Yellow", "]"}], ",", "\"\<Intake \>\"", 
+               ",", 
+               RowBox[{"is", "[", "Orange", "]"}], ",", 
+               "\"\<Compression \>\"", ",", 
+               RowBox[{"is", "[", "Red", "]"}], ",", "\"\<Combustion \>\"", 
+               ",", 
+               RowBox[{"is", "[", "Blue", "]"}], ",", "\"\<Exhaust \>\""}], 
+              "}"}], "}"}], "]"}], ",", "10", ",", 
+           RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], "]"}], 
+         ",", "\[IndentingNewLine]", 
+         RowBox[{"Invisible", "@", 
+          RowBox[{"Style", "[", 
+           RowBox[{
+            RowBox[{"Grid", "[", 
+             RowBox[{"{", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"is", "[", "Yellow", "]"}], ",", "\"\<Intake \>\"", 
+                ",", 
+                RowBox[{"is", "[", "Orange", "]"}], ",", 
+                "\"\<Compression \>\"", ",", 
+                RowBox[{"is", "[", "Red", "]"}], ",", "\"\<Combustion \>\"", 
+                ",", 
+                RowBox[{"is", "[", "Blue", "]"}], ",", "\"\<Exhaust \>\""}], 
+               "}"}], "}"}], "]"}], ",", "10", ",", 
+            RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], 
+           "]"}]}]}], "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Alignment", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Center", ",", "Center"}], "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Mu]", ",", "0", ",", "\"\<animate\>\""}], "}"}], ",", "0", 
+     ",", "4", ",", ".05", ",", 
+     RowBox[{"ControlType", "\[Rule]", "Animator"}], ",", 
+     RowBox[{"AppearanceElements", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<PlayPauseButton\>\"", ",", "\"\<FasterSlowerButtons\>\""}], 
+       "}"}]}], ",", 
+     RowBox[{"AnimationRunning", "\[Rule]", "False"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Mu]", ",", "0", ",", "\"\<cycle\>\""}], "}"}], ",", "0", ",",
+      "4", ",", ".05", ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Small"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "5", ",", "\"\<number of cylinders\>\""}], "}"}], ",",
+      "3", ",", "9", ",", "2", ",", 
+     RowBox[{"ControlType", "\[Rule]", "RadioButton"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Medium"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c", ",", "True", ",", "\"\<draw cylinders\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"True", ",", "False"}], "}"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"l", ",", "False", ",", "\"\<show cycles\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"True", ",", "False"}], "}"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Bottom"}]}], "}"}], ",", 
+   RowBox[{"AutorunSequencing", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"2", ",", "3", ",", "4", ",", "5"}], "}"}]}], ",", 
+   RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.35696210375764*^9, 3.387162923640625*^9, 3.38716295946875*^9, {
+   3.387163078453125*^9, 3.38716313296875*^9}, {3.387163169046875*^9, 
+   3.387163169171875*^9}, {3.38716567253125*^9, 3.3871656729375*^9}, {
+   3.387165969921875*^9, 3.3871660085625*^9}, {3.387167254625*^9, 
+   3.38716725696875*^9}, {3.3871709413125*^9, 3.387170951828125*^9}, {
+   3.387172682265625*^9, 3.387172689453125*^9}, {3.38717272646875*^9, 
+   3.38717274840625*^9}, {3.3873045488417525`*^9, 3.387304557138734*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = True, $CellContext`l$$ = 
+    False, $CellContext`n$$ = 5, $CellContext`\[Mu]$$ = 0, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Mu]$$], 0, "animate"}, 0, 4, 0.05}, {{
+       Hold[$CellContext`\[Mu]$$], 0, "cycle"}, 0, 4, 0.05}, {{
+       Hold[$CellContext`n$$], 5, "number of cylinders"}, 3, 9, 2}, {{
+       Hold[$CellContext`c$$], True, "draw cylinders"}, {True, False}}, {{
+       Hold[$CellContext`l$$], False, "show cycles"}, {True, False}}}, 
+    Typeset`size$$ = {350., {181.5, 186.5}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`\[Mu]$1664$$ = 0, $CellContext`n$1665$$ = 
+    0, $CellContext`c$1666$$ = False, $CellContext`l$1667$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = True, $CellContext`l$$ = 
+        False, $CellContext`n$$ = 5, $CellContext`\[Mu]$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Mu]$$, $CellContext`\[Mu]$1664$$, 0], 
+        Hold[$CellContext`n$$, $CellContext`n$1665$$, 0], 
+        Hold[$CellContext`c$$, $CellContext`c$1666$$, False], 
+        Hold[$CellContext`l$$, $CellContext`l$1667$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         Graphics3D[{
+           EdgeForm[
+            Opacity[0.3]], 
+           $CellContext`crank[$CellContext`\[Mu]$$], 
+           $CellContext`hub[$CellContext`\[Mu]$$], 
+           $CellContext`cylinders[$CellContext`\[Mu]$$, $CellContext`n$$, \
+$CellContext`c$$, $CellContext`l$$]}, Lighting -> "Neutral", Background -> 
+          GrayLevel[0.75], Boxed -> False, 
+          PlotRange -> {{-10, 10}, {-3, 3}, {-10, 10}}, ViewAngle -> 
+          0.23281565895710432`, ImageSize -> {350, 350}], 
+         If[$CellContext`l$$, 
+          Style[
+           Grid[{{
+              $CellContext`is[Yellow], "Intake ", 
+              $CellContext`is[Orange], "Compression ", 
+              $CellContext`is[Red], "Combustion ", 
+              $CellContext`is[Blue], "Exhaust "}}], 10, FontFamily -> 
+           "Helvetica"], 
+          Invisible[
+           Style[
+            Grid[{{
+               $CellContext`is[Yellow], "Intake ", 
+               $CellContext`is[Orange], "Compression ", 
+               $CellContext`is[Red], "Combustion ", 
+               $CellContext`is[Blue], "Exhaust "}}], 10, FontFamily -> 
+            "Helvetica"]]]}, Alignment -> {Center, Center}], 
+      "Specifications" :> {{{$CellContext`\[Mu]$$, 0, "animate"}, 0, 4, 0.05, 
+         ControlType -> Animator, 
+         AppearanceElements -> {"PlayPauseButton", "FasterSlowerButtons"}, 
+         AnimationRunning -> False}, {{$CellContext`\[Mu]$$, 0, "cycle"}, 0, 
+         4, 0.05, ImageSize -> 
+         Small}, {{$CellContext`n$$, 5, "number of cylinders"}, 3, 9, 2, 
+         ControlType -> RadioButton, ImageSize -> 
+         Medium}, {{$CellContext`c$$, True, "draw cylinders"}, {
+         True, False}}, {{$CellContext`l$$, False, "show cycles"}, {
+         True, False}, ControlPlacement -> Bottom}}, 
+      "Options" :> {AutorunSequencing -> {2, 3, 4, 5}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{394., {269., 274.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`crank[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          GrayLevel[0.3], 
+          Specularity[Red, 10], 
+          Cylinder[{{0, 0, 0}, {0, 1, 0}}, 1.5], 
+          Cylinder[{{0, -0.1, 0}, {0, 3, 0}}, 0.3], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta] + Pi], -0.2, 
+             Sin[$CellContext`\[Theta] + Pi]}, {
+             Cos[$CellContext`\[Theta] + Pi], 1.2, 
+             Sin[$CellContext`\[Theta] + Pi]}}, 0.3], 
+          GrayLevel[0.2], 
+          Specularity[LightBlue, 10], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -1.5, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], 1.2, 
+             Sin[$CellContext`\[Theta]]}}, 0.3]}], $CellContext`hub[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          GrayLevel[0.2], 
+          Specularity[LightBlue, 10], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -0.6, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], -0.4, 
+             Sin[$CellContext`\[Theta]]}}, 1.4], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -1.4, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], -1.2, 
+             Sin[$CellContext`\[Theta]]}}, 1.4]}], $CellContext`cylinders[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]], 
+         Pattern[$CellContext`c, 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          Table[
+           
+           With[{$CellContext`p = $CellContext`rc[$CellContext`\[Theta], \
+$CellContext`i, $CellContext`n], $CellContext`q = {
+               Cos[(2 Pi) (($CellContext`i - 1)/$CellContext`n) + Pi/2], 0, 
+               
+               Sin[(2 Pi) (($CellContext`i - 1)/$CellContext`n) + 
+                Pi/2]}, $CellContext`r = $CellContext`acf[$CellContext`\
+\[Theta], $CellContext`i, $CellContext`n]}, {
+             FaceForm[
+              Directive[LightBlue, 
+               Specularity[White, 50]], Black], 
+             If[$CellContext`i == 1, 
+              
+              Cylinder[{$CellContext`p + {0, -1.3, 0}, $CellContext`p + {
+                 0, -0.5, 0}}, 0.2], 
+              
+              Cylinder[{$CellContext`p + {0, -1.5, 0}, $CellContext`p + {
+                 0, -0.3, 0}}, 0.2]], 
+             
+             Cylinder[{$CellContext`p + {
+                0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+              0.2], 
+             
+             Cylinder[{$CellContext`r $CellContext`q + {
+                0, -1.9, 0}, $CellContext`r $CellContext`q + {0, 0.1, 0}}, 
+              0.2], 
+             Darker[
+              ColorData["HTML"]["SteelBlue"], 0.5], 
+             Specularity[Green, 30], 
+             
+             Cylinder[{($CellContext`r - 0.4) $CellContext`q + {
+                0, -0.9, 0}, ($CellContext`r + 1) $CellContext`q + {
+                0, -0.9, 0}}, 1], 
+             If[$CellContext`c, {
+               ControlActive[
+                FaceForm[], 
+                FaceForm[
+                 Opacity[0.4], White]], 
+               
+               Cylinder[{
+                3.4 $CellContext`q + {0, -0.9, 0}, 
+                 7.1 $CellContext`q + {0, -0.9, 0}}, 1.1]}, {}], 
+             Sphere[
+             7.5 $CellContext`q + {0, -0.9, 0}, 
+              0.2]}], {$CellContext`i, $CellContext`n}]}], \
+$CellContext`cylinders[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]], 
+         Pattern[$CellContext`c, 
+          Blank[]], 
+         Pattern[$CellContext`l, 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          Table[
+           
+           With[{$CellContext`p = $CellContext`rc[$CellContext`\[Theta], \
+$CellContext`i, $CellContext`n], $CellContext`q = {
+               Cos[((2 Pi) ($CellContext`i - 1))/$CellContext`n + Pi/2], 0, 
+               
+               Sin[((2 Pi) ($CellContext`i - 1))/$CellContext`n + 
+                Pi/2]}, $CellContext`r = $CellContext`acf[$CellContext`\
+\[Theta], $CellContext`i, $CellContext`n]}, {
+             FaceForm[
+              Directive[LightBlue, 
+               Specularity[White, 50]], Black], 
+             If[$CellContext`i == 1, {
+               
+               Cylinder[{$CellContext`p + {0, -1.3, 0}, $CellContext`p + {
+                  0, -0.5, 0}}, 0.2], 
+               Cylinder[{{
+                  Cos[$CellContext`\[Theta]], -0.9, 
+                  
+                  Sin[$CellContext`\[Theta]]}, $CellContext`r $CellContext`q + \
+{0, -0.9, 0}}, 0.2]}, {
+               
+               Cylinder[{$CellContext`p + {0, -1.5, 0}, $CellContext`p + {
+                  0, -0.3, 0}}, 0.2], 
+               
+               Cylinder[{$CellContext`p + {
+                  0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+                0.2]}], 
+             
+             Cylinder[{$CellContext`p + {
+                0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+              0.2], 
+             
+             Cylinder[{$CellContext`r $CellContext`q + {
+                0, -1.9, 0}, $CellContext`r $CellContext`q + {0, 0.1, 0}}, 
+              0.2], 
+             
+             With[{$CellContext`\[Nu] = 
+               Mod[$CellContext`\[Mu] + 0.5 - 
+                 4 (Mod[Ceiling[$CellContext`n/2] ($CellContext`i - 
+                    1), $CellContext`n]/$CellContext`n), 4]}, {
+               If[0.8 <= $CellContext`\[Nu] <= 1.2, 
+                Directive[
+                 RGBColor[0.13, 0.25, 0.35], 
+                 Specularity[Green, 30], 
+                 Glow[
+                  RGBColor[1/2, 0, 0]]], 
+                Directive[
+                 RGBColor[0.13, 0.25, 0.35], 
+                 Specularity[Green, 30]]], 
+               
+               Cylinder[{($CellContext`r - 0.4) $CellContext`q + {
+                  0, -0.9, 0}, ($CellContext`r + 1) $CellContext`q + {
+                  0, -0.9, 0}}, 1], 
+               If[$CellContext`l, {
+                 Which[
+                  Inequality[0, LessEqual, $CellContext`\[Nu], Less, 1], 
+                  Orange, 
+                  Inequality[1, LessEqual, $CellContext`\[Nu], Less, 2], Red, 
+                  
+                  Inequality[2, LessEqual, $CellContext`\[Nu], Less, 3], Blue,
+                   
+                  Inequality[3, LessEqual, $CellContext`\[Nu], Less, 4], 
+                  Yellow], 
+                 Sphere[7.5 $CellContext`q + {0, -0.9, 0}, 0.2]}, {}]}], 
+             If[$CellContext`c, {
+               ControlActive[
+                FaceForm[], 
+                FaceForm[
+                 Opacity[0.4], White]], 
+               
+               Cylinder[{
+                3.4 $CellContext`q + {0, -0.9, 0}, 
+                 7.1 $CellContext`q + {0, -0.9, 0}}, 
+                1.1]}, {}]}], {$CellContext`i, $CellContext`n}]}], \
+$CellContext`rc[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`k, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       RotationTransform[
+        Pi/2 + $CellContext`md[$CellContext`\[Theta]] + ((2 
+            Pi) ($CellContext`k - 1))/$CellContext`n, {0, -1, 0}, {
+          Cos[$CellContext`\[Theta]], 0, 
+          Sin[$CellContext`\[Theta]]}][{Cos[$CellContext`\[Theta]] + 1, 0, 
+          Sin[$CellContext`\[Theta]]}], $CellContext`md[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]]] := 
+       ArcSin[Cos[$CellContext`\[Theta]]/5.], $CellContext`acf[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`k, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       With[{$CellContext`\[Rho] = ((2 Pi) ($CellContext`k - 
+              1))/$CellContext`n + Pi/2}, 
+         Quiet[
+          Part[
+           Solve[
+           Norm[{$CellContext`r Cos[$CellContext`\[Rho]], 0, $CellContext`r 
+                Sin[$CellContext`\[Rho]]} - $CellContext`rc[$CellContext`\
+\[Theta], $CellContext`k, $CellContext`n]] == 4, $CellContext`r], 2, 1, 2]]], 
+       Attributes[PlotRange] = {ReadProtected}, $CellContext`is[
+         Pattern[$CellContext`col, 
+          Blank[]]] := Graphics[{$CellContext`col, 
+          EdgeForm[Black], 
+          Disk[]}, ImageSize -> 10, BaselinePosition -> Bottom]}; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->435085593]
+}, {2}]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection"],
+
+Cell["\<\
+This Demonstration shows a working model of a 4-stroke radial engine. Unlike \
+a straight cylinder engine, the cylinders are connected to the crankshaft \
+using a single hub with a master-and-articulating rods assembly. This engine \
+configuration was very popular in WWII aircraft. For smooth firing order, \
+most 4-stroke radial engines have an odd number of cylinders.\
+\>", "ManipulateCaption",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.387171817140625*^9, 3.38717192996875*^9}, {
+   3.38717199609375*^9, 3.38717217678125*^9}, {3.387172289234375*^9, 
+   3.387172405953125*^9}, {3.38717244384375*^9, 3.3871726560625*^9}, 
+   3.387196960388977*^9, {3.3872000508671236`*^9, 3.3872001282113686`*^9}},
+ CellID->82192114]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = True, $CellContext`l$$ = 
+    True, $CellContext`n$$ = 5, $CellContext`\[Mu]$$ = 0, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Mu]$$], 0, "animate"}, 0, 4, 0.05}, {{
+       Hold[$CellContext`\[Mu]$$], 0, "cycle"}, 0, 4, 0.05}, {{
+       Hold[$CellContext`n$$], 5, "number of cylinders"}, 3, 9, 2}, {{
+       Hold[$CellContext`c$$], True, "draw cylinders"}, {True, False}}, {{
+       Hold[$CellContext`l$$], True, "show cycles"}, {True, False}}}, 
+    Typeset`size$$ = {350., {181.5, 186.5}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`\[Mu]$1734$$ = 0, $CellContext`n$1735$$ = 
+    0, $CellContext`c$1736$$ = False, $CellContext`l$1737$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = True, $CellContext`l$$ = 
+        True, $CellContext`n$$ = 5, $CellContext`\[Mu]$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Mu]$$, $CellContext`\[Mu]$1734$$, 0], 
+        Hold[$CellContext`n$$, $CellContext`n$1735$$, 0], 
+        Hold[$CellContext`c$$, $CellContext`c$1736$$, False], 
+        Hold[$CellContext`l$$, $CellContext`l$1737$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         Graphics3D[{
+           EdgeForm[
+            Opacity[0.3]], 
+           $CellContext`crank[$CellContext`\[Mu]$$], 
+           $CellContext`hub[$CellContext`\[Mu]$$], 
+           $CellContext`cylinders[$CellContext`\[Mu]$$, $CellContext`n$$, \
+$CellContext`c$$, $CellContext`l$$]}, Lighting -> "Neutral", Background -> 
+          GrayLevel[0.75], Boxed -> False, 
+          PlotRange -> {{-10, 10}, {-3, 3}, {-10, 10}}, ViewAngle -> 
+          0.23281565895710432`, ImageSize -> {350, 350}], 
+         If[$CellContext`l$$, 
+          Style[
+           Grid[{{
+              $CellContext`is[Yellow], "Intake ", 
+              $CellContext`is[Orange], "Compression ", 
+              $CellContext`is[Red], "Combustion ", 
+              $CellContext`is[Blue], "Exhaust "}}], 10, FontFamily -> 
+           "Helvetica"], 
+          Invisible[
+           Style[
+            Grid[{{
+               $CellContext`is[Yellow], "Intake ", 
+               $CellContext`is[Orange], "Compression ", 
+               $CellContext`is[Red], "Combustion ", 
+               $CellContext`is[Blue], "Exhaust "}}], 10, FontFamily -> 
+            "Helvetica"]]]}, Alignment -> {Center, Center}], 
+      "Specifications" :> {{{$CellContext`\[Mu]$$, 0, "animate"}, 0, 4, 0.05, 
+         ControlType -> Animator, 
+         AppearanceElements -> {"PlayPauseButton", "FasterSlowerButtons"}, 
+         AnimationRunning -> False}, {{$CellContext`\[Mu]$$, 0, "cycle"}, 0, 
+         4, 0.05, ImageSize -> 
+         Small}, {{$CellContext`n$$, 5, "number of cylinders"}, 3, 9, 2, 
+         ControlType -> RadioButton, ImageSize -> 
+         Medium}, {{$CellContext`c$$, True, "draw cylinders"}, {
+         True, False}}, {{$CellContext`l$$, True, "show cycles"}, {
+         True, False}, ControlPlacement -> Bottom}}, 
+      "Options" :> {AutorunSequencing -> {2, 3, 4, 5}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{394., {269., 274.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`crank[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          GrayLevel[0.3], 
+          Specularity[Red, 10], 
+          Cylinder[{{0, 0, 0}, {0, 1, 0}}, 1.5], 
+          Cylinder[{{0, -0.1, 0}, {0, 3, 0}}, 0.3], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta] + Pi], -0.2, 
+             Sin[$CellContext`\[Theta] + Pi]}, {
+             Cos[$CellContext`\[Theta] + Pi], 1.2, 
+             Sin[$CellContext`\[Theta] + Pi]}}, 0.3], 
+          GrayLevel[0.2], 
+          Specularity[LightBlue, 10], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -1.5, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], 1.2, 
+             Sin[$CellContext`\[Theta]]}}, 0.3]}], $CellContext`hub[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          GrayLevel[0.2], 
+          Specularity[LightBlue, 10], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -0.6, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], -0.4, 
+             Sin[$CellContext`\[Theta]]}}, 1.4], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -1.4, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], -1.2, 
+             Sin[$CellContext`\[Theta]]}}, 1.4]}], $CellContext`cylinders[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]], 
+         Pattern[$CellContext`c, 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          Table[
+           
+           With[{$CellContext`p = $CellContext`rc[$CellContext`\[Theta], \
+$CellContext`i, $CellContext`n], $CellContext`q = {
+               Cos[(2 Pi) (($CellContext`i - 1)/$CellContext`n) + Pi/2], 0, 
+               
+               Sin[(2 Pi) (($CellContext`i - 1)/$CellContext`n) + 
+                Pi/2]}, $CellContext`r = $CellContext`acf[$CellContext`\
+\[Theta], $CellContext`i, $CellContext`n]}, {
+             FaceForm[
+              Directive[LightBlue, 
+               Specularity[White, 50]], Black], 
+             If[$CellContext`i == 1, 
+              
+              Cylinder[{$CellContext`p + {0, -1.3, 0}, $CellContext`p + {
+                 0, -0.5, 0}}, 0.2], 
+              
+              Cylinder[{$CellContext`p + {0, -1.5, 0}, $CellContext`p + {
+                 0, -0.3, 0}}, 0.2]], 
+             
+             Cylinder[{$CellContext`p + {
+                0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+              0.2], 
+             
+             Cylinder[{$CellContext`r $CellContext`q + {
+                0, -1.9, 0}, $CellContext`r $CellContext`q + {0, 0.1, 0}}, 
+              0.2], 
+             Darker[
+              ColorData["HTML"]["SteelBlue"], 0.5], 
+             Specularity[Green, 30], 
+             
+             Cylinder[{($CellContext`r - 0.4) $CellContext`q + {
+                0, -0.9, 0}, ($CellContext`r + 1) $CellContext`q + {
+                0, -0.9, 0}}, 1], 
+             If[$CellContext`c, {
+               ControlActive[
+                FaceForm[], 
+                FaceForm[
+                 Opacity[0.4], White]], 
+               
+               Cylinder[{
+                3.4 $CellContext`q + {0, -0.9, 0}, 
+                 7.1 $CellContext`q + {0, -0.9, 0}}, 1.1]}, {}], 
+             Sphere[
+             7.5 $CellContext`q + {0, -0.9, 0}, 
+              0.2]}], {$CellContext`i, $CellContext`n}]}], \
+$CellContext`cylinders[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]], 
+         Pattern[$CellContext`c, 
+          Blank[]], 
+         Pattern[$CellContext`l, 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          Table[
+           
+           With[{$CellContext`p = $CellContext`rc[$CellContext`\[Theta], \
+$CellContext`i, $CellContext`n], $CellContext`q = {
+               Cos[((2 Pi) ($CellContext`i - 1))/$CellContext`n + Pi/2], 0, 
+               
+               Sin[((2 Pi) ($CellContext`i - 1))/$CellContext`n + 
+                Pi/2]}, $CellContext`r = $CellContext`acf[$CellContext`\
+\[Theta], $CellContext`i, $CellContext`n]}, {
+             FaceForm[
+              Directive[LightBlue, 
+               Specularity[White, 50]], Black], 
+             If[$CellContext`i == 1, {
+               
+               Cylinder[{$CellContext`p + {0, -1.3, 0}, $CellContext`p + {
+                  0, -0.5, 0}}, 0.2], 
+               Cylinder[{{
+                  Cos[$CellContext`\[Theta]], -0.9, 
+                  
+                  Sin[$CellContext`\[Theta]]}, $CellContext`r $CellContext`q + \
+{0, -0.9, 0}}, 0.2]}, {
+               
+               Cylinder[{$CellContext`p + {0, -1.5, 0}, $CellContext`p + {
+                  0, -0.3, 0}}, 0.2], 
+               
+               Cylinder[{$CellContext`p + {
+                  0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+                0.2]}], 
+             
+             Cylinder[{$CellContext`p + {
+                0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+              0.2], 
+             
+             Cylinder[{$CellContext`r $CellContext`q + {
+                0, -1.9, 0}, $CellContext`r $CellContext`q + {0, 0.1, 0}}, 
+              0.2], 
+             
+             With[{$CellContext`\[Nu] = 
+               Mod[$CellContext`\[Mu] + 0.5 - 
+                 4 (Mod[Ceiling[$CellContext`n/2] ($CellContext`i - 
+                    1), $CellContext`n]/$CellContext`n), 4]}, {
+               If[0.8 <= $CellContext`\[Nu] <= 1.2, 
+                Directive[
+                 RGBColor[0.13, 0.25, 0.35], 
+                 Specularity[Green, 30], 
+                 Glow[
+                  RGBColor[1/2, 0, 0]]], 
+                Directive[
+                 RGBColor[0.13, 0.25, 0.35], 
+                 Specularity[Green, 30]]], 
+               
+               Cylinder[{($CellContext`r - 0.4) $CellContext`q + {
+                  0, -0.9, 0}, ($CellContext`r + 1) $CellContext`q + {
+                  0, -0.9, 0}}, 1], 
+               If[$CellContext`l, {
+                 Which[
+                  Inequality[0, LessEqual, $CellContext`\[Nu], Less, 1], 
+                  Orange, 
+                  Inequality[1, LessEqual, $CellContext`\[Nu], Less, 2], Red, 
+                  
+                  Inequality[2, LessEqual, $CellContext`\[Nu], Less, 3], Blue,
+                   
+                  Inequality[3, LessEqual, $CellContext`\[Nu], Less, 4], 
+                  Yellow], 
+                 Sphere[7.5 $CellContext`q + {0, -0.9, 0}, 0.2]}, {}]}], 
+             If[$CellContext`c, {
+               ControlActive[
+                FaceForm[], 
+                FaceForm[
+                 Opacity[0.4], White]], 
+               
+               Cylinder[{
+                3.4 $CellContext`q + {0, -0.9, 0}, 
+                 7.1 $CellContext`q + {0, -0.9, 0}}, 
+                1.1]}, {}]}], {$CellContext`i, $CellContext`n}]}], \
+$CellContext`rc[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`k, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       RotationTransform[
+        Pi/2 + $CellContext`md[$CellContext`\[Theta]] + ((2 
+            Pi) ($CellContext`k - 1))/$CellContext`n, {0, -1, 0}, {
+          Cos[$CellContext`\[Theta]], 0, 
+          Sin[$CellContext`\[Theta]]}][{Cos[$CellContext`\[Theta]] + 1, 0, 
+          Sin[$CellContext`\[Theta]]}], $CellContext`md[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]]] := 
+       ArcSin[Cos[$CellContext`\[Theta]]/5.], $CellContext`acf[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`k, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       With[{$CellContext`\[Rho] = ((2 Pi) ($CellContext`k - 
+              1))/$CellContext`n + Pi/2}, 
+         Quiet[
+          Part[
+           Solve[
+           Norm[{$CellContext`r Cos[$CellContext`\[Rho]], 0, $CellContext`r 
+                Sin[$CellContext`\[Rho]]} - $CellContext`rc[$CellContext`\
+\[Theta], $CellContext`k, $CellContext`n]] == 4, $CellContext`r], 2, 1, 2]]], 
+       Attributes[PlotRange] = {ReadProtected}, $CellContext`is[
+         Pattern[$CellContext`col, 
+          Blank[]]] := Graphics[{$CellContext`col, 
+          EdgeForm[Black], 
+          Disk[]}, ImageSize -> 10, BaselinePosition -> Bottom]}; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->13044583]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = False, $CellContext`l$$ = 
+    True, $CellContext`n$$ = 3, $CellContext`\[Mu]$$ = 0, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Mu]$$], 0, "animate"}, 0, 4, 0.05}, {{
+       Hold[$CellContext`\[Mu]$$], 0, "cycle"}, 0, 4, 0.05}, {{
+       Hold[$CellContext`n$$], 5, "number of cylinders"}, 3, 9, 2}, {{
+       Hold[$CellContext`c$$], False, "draw cylinders"}, {True, False}}, {{
+       Hold[$CellContext`l$$], True, "show cycles"}, {True, False}}}, 
+    Typeset`size$$ = {350., {181.5, 186.5}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`\[Mu]$1804$$ = 0, $CellContext`n$1805$$ = 
+    0, $CellContext`c$1806$$ = False, $CellContext`l$1807$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = False, $CellContext`l$$ = 
+        True, $CellContext`n$$ = 5, $CellContext`\[Mu]$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Mu]$$, $CellContext`\[Mu]$1804$$, 0], 
+        Hold[$CellContext`n$$, $CellContext`n$1805$$, 0], 
+        Hold[$CellContext`c$$, $CellContext`c$1806$$, False], 
+        Hold[$CellContext`l$$, $CellContext`l$1807$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         Graphics3D[{
+           EdgeForm[
+            Opacity[0.3]], 
+           $CellContext`crank[$CellContext`\[Mu]$$], 
+           $CellContext`hub[$CellContext`\[Mu]$$], 
+           $CellContext`cylinders[$CellContext`\[Mu]$$, $CellContext`n$$, \
+$CellContext`c$$, $CellContext`l$$]}, Lighting -> "Neutral", Background -> 
+          GrayLevel[0.75], Boxed -> False, 
+          PlotRange -> {{-10, 10}, {-3, 3}, {-10, 10}}, ViewAngle -> 
+          0.23281565895710432`, ImageSize -> {350, 350}], 
+         If[$CellContext`l$$, 
+          Style[
+           Grid[{{
+              $CellContext`is[Yellow], "Intake ", 
+              $CellContext`is[Orange], "Compression ", 
+              $CellContext`is[Red], "Combustion ", 
+              $CellContext`is[Blue], "Exhaust "}}], 10, FontFamily -> 
+           "Helvetica"], 
+          Invisible[
+           Style[
+            Grid[{{
+               $CellContext`is[Yellow], "Intake ", 
+               $CellContext`is[Orange], "Compression ", 
+               $CellContext`is[Red], "Combustion ", 
+               $CellContext`is[Blue], "Exhaust "}}], 10, FontFamily -> 
+            "Helvetica"]]]}, Alignment -> {Center, Center}], 
+      "Specifications" :> {{{$CellContext`\[Mu]$$, 0, "animate"}, 0, 4, 0.05, 
+         ControlType -> Animator, 
+         AppearanceElements -> {"PlayPauseButton", "FasterSlowerButtons"}, 
+         AnimationRunning -> False}, {{$CellContext`\[Mu]$$, 0, "cycle"}, 0, 
+         4, 0.05, ImageSize -> 
+         Small}, {{$CellContext`n$$, 5, "number of cylinders"}, 3, 9, 2, 
+         ControlType -> RadioButton, ImageSize -> 
+         Medium}, {{$CellContext`c$$, False, "draw cylinders"}, {
+         True, False}}, {{$CellContext`l$$, True, "show cycles"}, {
+         True, False}, ControlPlacement -> Bottom}}, 
+      "Options" :> {AutorunSequencing -> {2, 3, 4, 5}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{394., {269., 274.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`crank[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          GrayLevel[0.3], 
+          Specularity[Red, 10], 
+          Cylinder[{{0, 0, 0}, {0, 1, 0}}, 1.5], 
+          Cylinder[{{0, -0.1, 0}, {0, 3, 0}}, 0.3], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta] + Pi], -0.2, 
+             Sin[$CellContext`\[Theta] + Pi]}, {
+             Cos[$CellContext`\[Theta] + Pi], 1.2, 
+             Sin[$CellContext`\[Theta] + Pi]}}, 0.3], 
+          GrayLevel[0.2], 
+          Specularity[LightBlue, 10], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -1.5, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], 1.2, 
+             Sin[$CellContext`\[Theta]]}}, 0.3]}], $CellContext`hub[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          GrayLevel[0.2], 
+          Specularity[LightBlue, 10], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -0.6, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], -0.4, 
+             Sin[$CellContext`\[Theta]]}}, 1.4], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -1.4, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], -1.2, 
+             Sin[$CellContext`\[Theta]]}}, 1.4]}], $CellContext`cylinders[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]], 
+         Pattern[$CellContext`c, 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          Table[
+           
+           With[{$CellContext`p = $CellContext`rc[$CellContext`\[Theta], \
+$CellContext`i, $CellContext`n], $CellContext`q = {
+               Cos[(2 Pi) (($CellContext`i - 1)/$CellContext`n) + Pi/2], 0, 
+               
+               Sin[(2 Pi) (($CellContext`i - 1)/$CellContext`n) + 
+                Pi/2]}, $CellContext`r = $CellContext`acf[$CellContext`\
+\[Theta], $CellContext`i, $CellContext`n]}, {
+             FaceForm[
+              Directive[LightBlue, 
+               Specularity[White, 50]], Black], 
+             If[$CellContext`i == 1, 
+              
+              Cylinder[{$CellContext`p + {0, -1.3, 0}, $CellContext`p + {
+                 0, -0.5, 0}}, 0.2], 
+              
+              Cylinder[{$CellContext`p + {0, -1.5, 0}, $CellContext`p + {
+                 0, -0.3, 0}}, 0.2]], 
+             
+             Cylinder[{$CellContext`p + {
+                0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+              0.2], 
+             
+             Cylinder[{$CellContext`r $CellContext`q + {
+                0, -1.9, 0}, $CellContext`r $CellContext`q + {0, 0.1, 0}}, 
+              0.2], 
+             Darker[
+              ColorData["HTML"]["SteelBlue"], 0.5], 
+             Specularity[Green, 30], 
+             
+             Cylinder[{($CellContext`r - 0.4) $CellContext`q + {
+                0, -0.9, 0}, ($CellContext`r + 1) $CellContext`q + {
+                0, -0.9, 0}}, 1], 
+             If[$CellContext`c, {
+               ControlActive[
+                FaceForm[], 
+                FaceForm[
+                 Opacity[0.4], White]], 
+               
+               Cylinder[{
+                3.4 $CellContext`q + {0, -0.9, 0}, 
+                 7.1 $CellContext`q + {0, -0.9, 0}}, 1.1]}, {}], 
+             Sphere[
+             7.5 $CellContext`q + {0, -0.9, 0}, 
+              0.2]}], {$CellContext`i, $CellContext`n}]}], \
+$CellContext`cylinders[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]], 
+         Pattern[$CellContext`c, 
+          Blank[]], 
+         Pattern[$CellContext`l, 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          Table[
+           
+           With[{$CellContext`p = $CellContext`rc[$CellContext`\[Theta], \
+$CellContext`i, $CellContext`n], $CellContext`q = {
+               Cos[((2 Pi) ($CellContext`i - 1))/$CellContext`n + Pi/2], 0, 
+               
+               Sin[((2 Pi) ($CellContext`i - 1))/$CellContext`n + 
+                Pi/2]}, $CellContext`r = $CellContext`acf[$CellContext`\
+\[Theta], $CellContext`i, $CellContext`n]}, {
+             FaceForm[
+              Directive[LightBlue, 
+               Specularity[White, 50]], Black], 
+             If[$CellContext`i == 1, {
+               
+               Cylinder[{$CellContext`p + {0, -1.3, 0}, $CellContext`p + {
+                  0, -0.5, 0}}, 0.2], 
+               Cylinder[{{
+                  Cos[$CellContext`\[Theta]], -0.9, 
+                  
+                  Sin[$CellContext`\[Theta]]}, $CellContext`r $CellContext`q + \
+{0, -0.9, 0}}, 0.2]}, {
+               
+               Cylinder[{$CellContext`p + {0, -1.5, 0}, $CellContext`p + {
+                  0, -0.3, 0}}, 0.2], 
+               
+               Cylinder[{$CellContext`p + {
+                  0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+                0.2]}], 
+             
+             Cylinder[{$CellContext`p + {
+                0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+              0.2], 
+             
+             Cylinder[{$CellContext`r $CellContext`q + {
+                0, -1.9, 0}, $CellContext`r $CellContext`q + {0, 0.1, 0}}, 
+              0.2], 
+             
+             With[{$CellContext`\[Nu] = 
+               Mod[$CellContext`\[Mu] + 0.5 - 
+                 4 (Mod[Ceiling[$CellContext`n/2] ($CellContext`i - 
+                    1), $CellContext`n]/$CellContext`n), 4]}, {
+               If[0.8 <= $CellContext`\[Nu] <= 1.2, 
+                Directive[
+                 RGBColor[0.13, 0.25, 0.35], 
+                 Specularity[Green, 30], 
+                 Glow[
+                  RGBColor[1/2, 0, 0]]], 
+                Directive[
+                 RGBColor[0.13, 0.25, 0.35], 
+                 Specularity[Green, 30]]], 
+               
+               Cylinder[{($CellContext`r - 0.4) $CellContext`q + {
+                  0, -0.9, 0}, ($CellContext`r + 1) $CellContext`q + {
+                  0, -0.9, 0}}, 1], 
+               If[$CellContext`l, {
+                 Which[
+                  Inequality[0, LessEqual, $CellContext`\[Nu], Less, 1], 
+                  Orange, 
+                  Inequality[1, LessEqual, $CellContext`\[Nu], Less, 2], Red, 
+                  
+                  Inequality[2, LessEqual, $CellContext`\[Nu], Less, 3], Blue,
+                   
+                  Inequality[3, LessEqual, $CellContext`\[Nu], Less, 4], 
+                  Yellow], 
+                 Sphere[7.5 $CellContext`q + {0, -0.9, 0}, 0.2]}, {}]}], 
+             If[$CellContext`c, {
+               ControlActive[
+                FaceForm[], 
+                FaceForm[
+                 Opacity[0.4], White]], 
+               
+               Cylinder[{
+                3.4 $CellContext`q + {0, -0.9, 0}, 
+                 7.1 $CellContext`q + {0, -0.9, 0}}, 
+                1.1]}, {}]}], {$CellContext`i, $CellContext`n}]}], \
+$CellContext`rc[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`k, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       RotationTransform[
+        Pi/2 + $CellContext`md[$CellContext`\[Theta]] + ((2 
+            Pi) ($CellContext`k - 1))/$CellContext`n, {0, -1, 0}, {
+          Cos[$CellContext`\[Theta]], 0, 
+          Sin[$CellContext`\[Theta]]}][{Cos[$CellContext`\[Theta]] + 1, 0, 
+          Sin[$CellContext`\[Theta]]}], $CellContext`md[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]]] := 
+       ArcSin[Cos[$CellContext`\[Theta]]/5.], $CellContext`acf[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`k, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       With[{$CellContext`\[Rho] = ((2 Pi) ($CellContext`k - 
+              1))/$CellContext`n + Pi/2}, 
+         Quiet[
+          Part[
+           Solve[
+           Norm[{$CellContext`r Cos[$CellContext`\[Rho]], 0, $CellContext`r 
+                Sin[$CellContext`\[Rho]]} - $CellContext`rc[$CellContext`\
+\[Theta], $CellContext`k, $CellContext`n]] == 4, $CellContext`r], 2, 1, 2]]], 
+       Attributes[PlotRange] = {ReadProtected}, $CellContext`is[
+         Pattern[$CellContext`col, 
+          Blank[]]] := Graphics[{$CellContext`col, 
+          EdgeForm[Black], 
+          Disk[]}, ImageSize -> 10, BaselinePosition -> Bottom]}; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->273251621],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = True, $CellContext`l$$ = 
+    False, $CellContext`n$$ = 5, $CellContext`\[Mu]$$ = 2.75, Typeset`show$$ =
+     True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Mu]$$], 2.75, "animate"}, 0, 4, 0.05}, {{
+       Hold[$CellContext`\[Mu]$$], 2.75, "cycle"}, 0, 4, 0.05}, {{
+       Hold[$CellContext`n$$], 5, "number of cylinders"}, 3, 9, 2}, {{
+       Hold[$CellContext`c$$], True, "draw cylinders"}, {True, False}}, {{
+       Hold[$CellContext`l$$], False, "show cycles"}, {True, False}}}, 
+    Typeset`size$$ = {350., {181.5, 186.5}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`\[Mu]$1874$$ = 0, $CellContext`n$1875$$ = 
+    0, $CellContext`c$1876$$ = False, $CellContext`l$1877$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = True, $CellContext`l$$ = 
+        False, $CellContext`n$$ = 5, $CellContext`\[Mu]$$ = 2.75}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Mu]$$, $CellContext`\[Mu]$1874$$, 0], 
+        Hold[$CellContext`n$$, $CellContext`n$1875$$, 0], 
+        Hold[$CellContext`c$$, $CellContext`c$1876$$, False], 
+        Hold[$CellContext`l$$, $CellContext`l$1877$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         Graphics3D[{
+           EdgeForm[
+            Opacity[0.3]], 
+           $CellContext`crank[$CellContext`\[Mu]$$], 
+           $CellContext`hub[$CellContext`\[Mu]$$], 
+           $CellContext`cylinders[$CellContext`\[Mu]$$, $CellContext`n$$, \
+$CellContext`c$$, $CellContext`l$$]}, Lighting -> "Neutral", Background -> 
+          GrayLevel[0.75], Boxed -> False, 
+          PlotRange -> {{-10, 10}, {-3, 3}, {-10, 10}}, ViewAngle -> 
+          0.23281565895710432`, ImageSize -> {350, 350}], 
+         If[$CellContext`l$$, 
+          Style[
+           Grid[{{
+              $CellContext`is[Yellow], "Intake ", 
+              $CellContext`is[Orange], "Compression ", 
+              $CellContext`is[Red], "Combustion ", 
+              $CellContext`is[Blue], "Exhaust "}}], 10, FontFamily -> 
+           "Helvetica"], 
+          Invisible[
+           Style[
+            Grid[{{
+               $CellContext`is[Yellow], "Intake ", 
+               $CellContext`is[Orange], "Compression ", 
+               $CellContext`is[Red], "Combustion ", 
+               $CellContext`is[Blue], "Exhaust "}}], 10, FontFamily -> 
+            "Helvetica"]]]}, Alignment -> {Center, Center}], 
+      "Specifications" :> {{{$CellContext`\[Mu]$$, 2.75, "animate"}, 0, 4, 
+         0.05, ControlType -> Animator, 
+         AppearanceElements -> {"PlayPauseButton", "FasterSlowerButtons"}, 
+         AnimationRunning -> False}, {{$CellContext`\[Mu]$$, 2.75, "cycle"}, 
+         0, 4, 0.05, ImageSize -> 
+         Small}, {{$CellContext`n$$, 5, "number of cylinders"}, 3, 9, 2, 
+         ControlType -> RadioButton, ImageSize -> 
+         Medium}, {{$CellContext`c$$, True, "draw cylinders"}, {
+         True, False}}, {{$CellContext`l$$, False, "show cycles"}, {
+         True, False}, ControlPlacement -> Bottom}}, 
+      "Options" :> {AutorunSequencing -> {2, 3, 4, 5}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{394., {269., 274.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`crank[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          GrayLevel[0.3], 
+          Specularity[Red, 10], 
+          Cylinder[{{0, 0, 0}, {0, 1, 0}}, 1.5], 
+          Cylinder[{{0, -0.1, 0}, {0, 3, 0}}, 0.3], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta] + Pi], -0.2, 
+             Sin[$CellContext`\[Theta] + Pi]}, {
+             Cos[$CellContext`\[Theta] + Pi], 1.2, 
+             Sin[$CellContext`\[Theta] + Pi]}}, 0.3], 
+          GrayLevel[0.2], 
+          Specularity[LightBlue, 10], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -1.5, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], 1.2, 
+             Sin[$CellContext`\[Theta]]}}, 0.3]}], $CellContext`hub[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          GrayLevel[0.2], 
+          Specularity[LightBlue, 10], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -0.6, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], -0.4, 
+             Sin[$CellContext`\[Theta]]}}, 1.4], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -1.4, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], -1.2, 
+             Sin[$CellContext`\[Theta]]}}, 1.4]}], $CellContext`cylinders[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]], 
+         Pattern[$CellContext`c, 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          Table[
+           
+           With[{$CellContext`p = $CellContext`rc[$CellContext`\[Theta], \
+$CellContext`i, $CellContext`n], $CellContext`q = {
+               Cos[(2 Pi) (($CellContext`i - 1)/$CellContext`n) + Pi/2], 0, 
+               
+               Sin[(2 Pi) (($CellContext`i - 1)/$CellContext`n) + 
+                Pi/2]}, $CellContext`r = $CellContext`acf[$CellContext`\
+\[Theta], $CellContext`i, $CellContext`n]}, {
+             FaceForm[
+              Directive[LightBlue, 
+               Specularity[White, 50]], Black], 
+             If[$CellContext`i == 1, 
+              
+              Cylinder[{$CellContext`p + {0, -1.3, 0}, $CellContext`p + {
+                 0, -0.5, 0}}, 0.2], 
+              
+              Cylinder[{$CellContext`p + {0, -1.5, 0}, $CellContext`p + {
+                 0, -0.3, 0}}, 0.2]], 
+             
+             Cylinder[{$CellContext`p + {
+                0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+              0.2], 
+             
+             Cylinder[{$CellContext`r $CellContext`q + {
+                0, -1.9, 0}, $CellContext`r $CellContext`q + {0, 0.1, 0}}, 
+              0.2], 
+             Darker[
+              ColorData["HTML"]["SteelBlue"], 0.5], 
+             Specularity[Green, 30], 
+             
+             Cylinder[{($CellContext`r - 0.4) $CellContext`q + {
+                0, -0.9, 0}, ($CellContext`r + 1) $CellContext`q + {
+                0, -0.9, 0}}, 1], 
+             If[$CellContext`c, {
+               ControlActive[
+                FaceForm[], 
+                FaceForm[
+                 Opacity[0.4], White]], 
+               
+               Cylinder[{
+                3.4 $CellContext`q + {0, -0.9, 0}, 
+                 7.1 $CellContext`q + {0, -0.9, 0}}, 1.1]}, {}], 
+             Sphere[
+             7.5 $CellContext`q + {0, -0.9, 0}, 
+              0.2]}], {$CellContext`i, $CellContext`n}]}], \
+$CellContext`cylinders[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]], 
+         Pattern[$CellContext`c, 
+          Blank[]], 
+         Pattern[$CellContext`l, 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          Table[
+           
+           With[{$CellContext`p = $CellContext`rc[$CellContext`\[Theta], \
+$CellContext`i, $CellContext`n], $CellContext`q = {
+               Cos[((2 Pi) ($CellContext`i - 1))/$CellContext`n + Pi/2], 0, 
+               
+               Sin[((2 Pi) ($CellContext`i - 1))/$CellContext`n + 
+                Pi/2]}, $CellContext`r = $CellContext`acf[$CellContext`\
+\[Theta], $CellContext`i, $CellContext`n]}, {
+             FaceForm[
+              Directive[LightBlue, 
+               Specularity[White, 50]], Black], 
+             If[$CellContext`i == 1, {
+               
+               Cylinder[{$CellContext`p + {0, -1.3, 0}, $CellContext`p + {
+                  0, -0.5, 0}}, 0.2], 
+               Cylinder[{{
+                  Cos[$CellContext`\[Theta]], -0.9, 
+                  
+                  Sin[$CellContext`\[Theta]]}, $CellContext`r $CellContext`q + \
+{0, -0.9, 0}}, 0.2]}, {
+               
+               Cylinder[{$CellContext`p + {0, -1.5, 0}, $CellContext`p + {
+                  0, -0.3, 0}}, 0.2], 
+               
+               Cylinder[{$CellContext`p + {
+                  0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+                0.2]}], 
+             
+             Cylinder[{$CellContext`p + {
+                0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+              0.2], 
+             
+             Cylinder[{$CellContext`r $CellContext`q + {
+                0, -1.9, 0}, $CellContext`r $CellContext`q + {0, 0.1, 0}}, 
+              0.2], 
+             
+             With[{$CellContext`\[Nu] = 
+               Mod[$CellContext`\[Mu] + 0.5 - 
+                 4 (Mod[Ceiling[$CellContext`n/2] ($CellContext`i - 
+                    1), $CellContext`n]/$CellContext`n), 4]}, {
+               If[0.8 <= $CellContext`\[Nu] <= 1.2, 
+                Directive[
+                 RGBColor[0.13, 0.25, 0.35], 
+                 Specularity[Green, 30], 
+                 Glow[
+                  RGBColor[1/2, 0, 0]]], 
+                Directive[
+                 RGBColor[0.13, 0.25, 0.35], 
+                 Specularity[Green, 30]]], 
+               
+               Cylinder[{($CellContext`r - 0.4) $CellContext`q + {
+                  0, -0.9, 0}, ($CellContext`r + 1) $CellContext`q + {
+                  0, -0.9, 0}}, 1], 
+               If[$CellContext`l, {
+                 Which[
+                  Inequality[0, LessEqual, $CellContext`\[Nu], Less, 1], 
+                  Orange, 
+                  Inequality[1, LessEqual, $CellContext`\[Nu], Less, 2], Red, 
+                  
+                  Inequality[2, LessEqual, $CellContext`\[Nu], Less, 3], Blue,
+                   
+                  Inequality[3, LessEqual, $CellContext`\[Nu], Less, 4], 
+                  Yellow], 
+                 Sphere[7.5 $CellContext`q + {0, -0.9, 0}, 0.2]}, {}]}], 
+             If[$CellContext`c, {
+               ControlActive[
+                FaceForm[], 
+                FaceForm[
+                 Opacity[0.4], White]], 
+               
+               Cylinder[{
+                3.4 $CellContext`q + {0, -0.9, 0}, 
+                 7.1 $CellContext`q + {0, -0.9, 0}}, 
+                1.1]}, {}]}], {$CellContext`i, $CellContext`n}]}], \
+$CellContext`rc[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`k, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       RotationTransform[
+        Pi/2 + $CellContext`md[$CellContext`\[Theta]] + ((2 
+            Pi) ($CellContext`k - 1))/$CellContext`n, {0, -1, 0}, {
+          Cos[$CellContext`\[Theta]], 0, 
+          Sin[$CellContext`\[Theta]]}][{Cos[$CellContext`\[Theta]] + 1, 0, 
+          Sin[$CellContext`\[Theta]]}], $CellContext`md[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]]] := 
+       ArcSin[Cos[$CellContext`\[Theta]]/5.], $CellContext`acf[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`k, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       With[{$CellContext`\[Rho] = ((2 Pi) ($CellContext`k - 
+              1))/$CellContext`n + Pi/2}, 
+         Quiet[
+          Part[
+           Solve[
+           Norm[{$CellContext`r Cos[$CellContext`\[Rho]], 0, $CellContext`r 
+                Sin[$CellContext`\[Rho]]} - $CellContext`rc[$CellContext`\
+\[Theta], $CellContext`k, $CellContext`n]] == 4, $CellContext`r], 2, 1, 2]]], 
+       Attributes[PlotRange] = {ReadProtected}, $CellContext`is[
+         Pattern[$CellContext`col, 
+          Blank[]]] := Graphics[{$CellContext`col, 
+          EdgeForm[Black], 
+          Disk[]}, ImageSize -> 10, BaselinePosition -> Bottom]}; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->5213279],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = True, $CellContext`l$$ = 
+    True, $CellContext`n$$ = 9, $CellContext`\[Mu]$$ = 0.7000000000000001, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Mu]$$], 0.7000000000000001, "animate"}, 0, 4, 
+      0.05}, {{
+       Hold[$CellContext`\[Mu]$$], 0.7000000000000001, "cycle"}, 0, 4, 
+      0.05}, {{
+       Hold[$CellContext`n$$], 5, "number of cylinders"}, 3, 9, 2}, {{
+       Hold[$CellContext`c$$], True, "draw cylinders"}, {True, False}}, {{
+       Hold[$CellContext`l$$], True, "show cycles"}, {True, False}}}, 
+    Typeset`size$$ = {350., {181.5, 186.5}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`\[Mu]$1944$$ = 0, $CellContext`n$1945$$ = 
+    0, $CellContext`c$1946$$ = False, $CellContext`l$1947$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = True, $CellContext`l$$ = 
+        True, $CellContext`n$$ = 5, $CellContext`\[Mu]$$ = 
+        0.7000000000000001}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Mu]$$, $CellContext`\[Mu]$1944$$, 0], 
+        Hold[$CellContext`n$$, $CellContext`n$1945$$, 0], 
+        Hold[$CellContext`c$$, $CellContext`c$1946$$, False], 
+        Hold[$CellContext`l$$, $CellContext`l$1947$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         Graphics3D[{
+           EdgeForm[
+            Opacity[0.3]], 
+           $CellContext`crank[$CellContext`\[Mu]$$], 
+           $CellContext`hub[$CellContext`\[Mu]$$], 
+           $CellContext`cylinders[$CellContext`\[Mu]$$, $CellContext`n$$, \
+$CellContext`c$$, $CellContext`l$$]}, Lighting -> "Neutral", Background -> 
+          GrayLevel[0.75], Boxed -> False, 
+          PlotRange -> {{-10, 10}, {-3, 3}, {-10, 10}}, ViewAngle -> 
+          0.23281565895710432`, ImageSize -> {350, 350}], 
+         If[$CellContext`l$$, 
+          Style[
+           Grid[{{
+              $CellContext`is[Yellow], "Intake ", 
+              $CellContext`is[Orange], "Compression ", 
+              $CellContext`is[Red], "Combustion ", 
+              $CellContext`is[Blue], "Exhaust "}}], 10, FontFamily -> 
+           "Helvetica"], 
+          Invisible[
+           Style[
+            Grid[{{
+               $CellContext`is[Yellow], "Intake ", 
+               $CellContext`is[Orange], "Compression ", 
+               $CellContext`is[Red], "Combustion ", 
+               $CellContext`is[Blue], "Exhaust "}}], 10, FontFamily -> 
+            "Helvetica"]]]}, Alignment -> {Center, Center}], 
+      "Specifications" :> {{{$CellContext`\[Mu]$$, 0.7000000000000001, 
+          "animate"}, 0, 4, 0.05, ControlType -> Animator, 
+         AppearanceElements -> {"PlayPauseButton", "FasterSlowerButtons"}, 
+         AnimationRunning -> 
+         False}, {{$CellContext`\[Mu]$$, 0.7000000000000001, "cycle"}, 0, 4, 
+         0.05, ImageSize -> 
+         Small}, {{$CellContext`n$$, 5, "number of cylinders"}, 3, 9, 2, 
+         ControlType -> RadioButton, ImageSize -> 
+         Medium}, {{$CellContext`c$$, True, "draw cylinders"}, {
+         True, False}}, {{$CellContext`l$$, True, "show cycles"}, {
+         True, False}, ControlPlacement -> Bottom}}, 
+      "Options" :> {AutorunSequencing -> {2, 3, 4, 5}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{394., {269., 274.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`crank[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          GrayLevel[0.3], 
+          Specularity[Red, 10], 
+          Cylinder[{{0, 0, 0}, {0, 1, 0}}, 1.5], 
+          Cylinder[{{0, -0.1, 0}, {0, 3, 0}}, 0.3], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta] + Pi], -0.2, 
+             Sin[$CellContext`\[Theta] + Pi]}, {
+             Cos[$CellContext`\[Theta] + Pi], 1.2, 
+             Sin[$CellContext`\[Theta] + Pi]}}, 0.3], 
+          GrayLevel[0.2], 
+          Specularity[LightBlue, 10], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -1.5, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], 1.2, 
+             Sin[$CellContext`\[Theta]]}}, 0.3]}], $CellContext`hub[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          GrayLevel[0.2], 
+          Specularity[LightBlue, 10], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -0.6, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], -0.4, 
+             Sin[$CellContext`\[Theta]]}}, 1.4], 
+          Cylinder[{{
+             Cos[$CellContext`\[Theta]], -1.4, 
+             Sin[$CellContext`\[Theta]]}, {
+             Cos[$CellContext`\[Theta]], -1.2, 
+             Sin[$CellContext`\[Theta]]}}, 1.4]}], $CellContext`cylinders[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]], 
+         Pattern[$CellContext`c, 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          Table[
+           
+           With[{$CellContext`p = $CellContext`rc[$CellContext`\[Theta], \
+$CellContext`i, $CellContext`n], $CellContext`q = {
+               Cos[(2 Pi) (($CellContext`i - 1)/$CellContext`n) + Pi/2], 0, 
+               
+               Sin[(2 Pi) (($CellContext`i - 1)/$CellContext`n) + 
+                Pi/2]}, $CellContext`r = $CellContext`acf[$CellContext`\
+\[Theta], $CellContext`i, $CellContext`n]}, {
+             FaceForm[
+              Directive[LightBlue, 
+               Specularity[White, 50]], Black], 
+             If[$CellContext`i == 1, 
+              
+              Cylinder[{$CellContext`p + {0, -1.3, 0}, $CellContext`p + {
+                 0, -0.5, 0}}, 0.2], 
+              
+              Cylinder[{$CellContext`p + {0, -1.5, 0}, $CellContext`p + {
+                 0, -0.3, 0}}, 0.2]], 
+             
+             Cylinder[{$CellContext`p + {
+                0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+              0.2], 
+             
+             Cylinder[{$CellContext`r $CellContext`q + {
+                0, -1.9, 0}, $CellContext`r $CellContext`q + {0, 0.1, 0}}, 
+              0.2], 
+             Darker[
+              ColorData["HTML"]["SteelBlue"], 0.5], 
+             Specularity[Green, 30], 
+             
+             Cylinder[{($CellContext`r - 0.4) $CellContext`q + {
+                0, -0.9, 0}, ($CellContext`r + 1) $CellContext`q + {
+                0, -0.9, 0}}, 1], 
+             If[$CellContext`c, {
+               ControlActive[
+                FaceForm[], 
+                FaceForm[
+                 Opacity[0.4], White]], 
+               
+               Cylinder[{
+                3.4 $CellContext`q + {0, -0.9, 0}, 
+                 7.1 $CellContext`q + {0, -0.9, 0}}, 1.1]}, {}], 
+             Sphere[
+             7.5 $CellContext`q + {0, -0.9, 0}, 
+              0.2]}], {$CellContext`i, $CellContext`n}]}], \
+$CellContext`cylinders[
+         Pattern[$CellContext`\[Mu], 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]], 
+         Pattern[$CellContext`c, 
+          Blank[]], 
+         Pattern[$CellContext`l, 
+          Blank[]]] := 
+       With[{$CellContext`\[Theta] = Pi $CellContext`\[Mu]}, {
+          Table[
+           
+           With[{$CellContext`p = $CellContext`rc[$CellContext`\[Theta], \
+$CellContext`i, $CellContext`n], $CellContext`q = {
+               Cos[((2 Pi) ($CellContext`i - 1))/$CellContext`n + Pi/2], 0, 
+               
+               Sin[((2 Pi) ($CellContext`i - 1))/$CellContext`n + 
+                Pi/2]}, $CellContext`r = $CellContext`acf[$CellContext`\
+\[Theta], $CellContext`i, $CellContext`n]}, {
+             FaceForm[
+              Directive[LightBlue, 
+               Specularity[White, 50]], Black], 
+             If[$CellContext`i == 1, {
+               
+               Cylinder[{$CellContext`p + {0, -1.3, 0}, $CellContext`p + {
+                  0, -0.5, 0}}, 0.2], 
+               Cylinder[{{
+                  Cos[$CellContext`\[Theta]], -0.9, 
+                  
+                  Sin[$CellContext`\[Theta]]}, $CellContext`r $CellContext`q + \
+{0, -0.9, 0}}, 0.2]}, {
+               
+               Cylinder[{$CellContext`p + {0, -1.5, 0}, $CellContext`p + {
+                  0, -0.3, 0}}, 0.2], 
+               
+               Cylinder[{$CellContext`p + {
+                  0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+                0.2]}], 
+             
+             Cylinder[{$CellContext`p + {
+                0, -0.9, 0}, $CellContext`r $CellContext`q + {0, -0.9, 0}}, 
+              0.2], 
+             
+             Cylinder[{$CellContext`r $CellContext`q + {
+                0, -1.9, 0}, $CellContext`r $CellContext`q + {0, 0.1, 0}}, 
+              0.2], 
+             
+             With[{$CellContext`\[Nu] = 
+               Mod[$CellContext`\[Mu] + 0.5 - 
+                 4 (Mod[Ceiling[$CellContext`n/2] ($CellContext`i - 
+                    1), $CellContext`n]/$CellContext`n), 4]}, {
+               If[0.8 <= $CellContext`\[Nu] <= 1.2, 
+                Directive[
+                 RGBColor[0.13, 0.25, 0.35], 
+                 Specularity[Green, 30], 
+                 Glow[
+                  RGBColor[1/2, 0, 0]]], 
+                Directive[
+                 RGBColor[0.13, 0.25, 0.35], 
+                 Specularity[Green, 30]]], 
+               
+               Cylinder[{($CellContext`r - 0.4) $CellContext`q + {
+                  0, -0.9, 0}, ($CellContext`r + 1) $CellContext`q + {
+                  0, -0.9, 0}}, 1], 
+               If[$CellContext`l, {
+                 Which[
+                  Inequality[0, LessEqual, $CellContext`\[Nu], Less, 1], 
+                  Orange, 
+                  Inequality[1, LessEqual, $CellContext`\[Nu], Less, 2], Red, 
+                  
+                  Inequality[2, LessEqual, $CellContext`\[Nu], Less, 3], Blue,
+                   
+                  Inequality[3, LessEqual, $CellContext`\[Nu], Less, 4], 
+                  Yellow], 
+                 Sphere[7.5 $CellContext`q + {0, -0.9, 0}, 0.2]}, {}]}], 
+             If[$CellContext`c, {
+               ControlActive[
+                FaceForm[], 
+                FaceForm[
+                 Opacity[0.4], White]], 
+               
+               Cylinder[{
+                3.4 $CellContext`q + {0, -0.9, 0}, 
+                 7.1 $CellContext`q + {0, -0.9, 0}}, 
+                1.1]}, {}]}], {$CellContext`i, $CellContext`n}]}], \
+$CellContext`rc[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`k, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       RotationTransform[
+        Pi/2 + $CellContext`md[$CellContext`\[Theta]] + ((2 
+            Pi) ($CellContext`k - 1))/$CellContext`n, {0, -1, 0}, {
+          Cos[$CellContext`\[Theta]], 0, 
+          Sin[$CellContext`\[Theta]]}][{Cos[$CellContext`\[Theta]] + 1, 0, 
+          Sin[$CellContext`\[Theta]]}], $CellContext`md[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]]] := 
+       ArcSin[Cos[$CellContext`\[Theta]]/5.], $CellContext`acf[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`k, 
+          Blank[]], 
+         Pattern[$CellContext`n, 
+          Blank[]]] := 
+       With[{$CellContext`\[Rho] = ((2 Pi) ($CellContext`k - 
+              1))/$CellContext`n + Pi/2}, 
+         Quiet[
+          Part[
+           Solve[
+           Norm[{$CellContext`r Cos[$CellContext`\[Rho]], 0, $CellContext`r 
+                Sin[$CellContext`\[Rho]]} - $CellContext`rc[$CellContext`\
+\[Theta], $CellContext`k, $CellContext`n]] == 4, $CellContext`r], 2, 1, 2]]], 
+       Attributes[PlotRange] = {ReadProtected}, $CellContext`is[
+         Pattern[$CellContext`col, 
+          Blank[]]] := Graphics[{$CellContext`col, 
+          EdgeForm[Black], 
+          Disk[]}, ImageSize -> 10, BaselinePosition -> Bottom]}; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->52571985]
+}, Open  ]],
+
+Cell["", "DetailsSection"],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Resize Images"]}],
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"ResizeImages"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Rotate and Zoom in 3D"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"RotateAndZoomIn3D"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Drag Locators"]}],
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"DragLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Create and Delete Locators"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"CreateAndDeleteLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Slider Zoom"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"SliderZoom"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Gamepad Controls"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"GamepadControls"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Automatic Animation"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"AutomaticAnimation"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Bookmark Animation"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SearchTermsSection"],
+
+Cell["radial engine", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.387172897734375*^9, 3.387172901953125*^9}},
+ CellID->775200936],
+
+Cell["piston engine", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.38690566084375*^9, 3.386905665015625*^9}},
+ CellID->114808284],
+
+Cell["cylinder engine", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.386905668234375*^9, 3.386905670421875*^9}},
+ CellID->32259884],
+
+Cell["combustion engine", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.386905674015625*^9, 3.3869056768125*^9}},
+ CellID->3741105],
+
+Cell["internal combustion engine", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.386905677421875*^9, 3.386905680609375*^9}},
+ CellID->360014062],
+
+Cell["reciprocating engine", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.386905683078125*^9, 3.38690571378125*^9}},
+ CellID->15848455],
+
+Cell["aircraft engine", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.386905758921875*^9, 3.38690576071875*^9}, {
+   3.387172890078125*^9, 3.387172894203125*^9}},
+ CellID->151834061],
+
+Cell["airplane engine", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.387172949796875*^9, 3.387172952078125*^9}},
+ CellID->415743963],
+
+Cell["Otto cycle", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.386905671109375*^9, 3.3869056733125*^9}, {
+   3.38690649678125*^9, 3.386906497375*^9}},
+ CellID->208351],
+
+Cell["four stroke cycle", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.386905693109375*^9, 3.38690569634375*^9}, {
+   3.386905816765625*^9, 3.3869058171875*^9}},
+ CellID->168494943],
+
+Cell["four stroke power valve system", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.3869058096875*^9, 3.3869058209375*^9}},
+ CellID->1012933194],
+
+Cell["master-and-articulating assembly", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.387172913390625*^9, 3.387172921015625*^9}},
+ CellID->141886445],
+
+Cell["rotary engine", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.387172921890625*^9, 3.387172942*^9}},
+ CellID->66954293],
+
+Cell["Exploratorium exhibit", "SearchTerms",
+ CellID->481549927]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "RelatedLinksSection"],
+
+Cell[TextData[ButtonBox["Otto Cycle",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://scienceworld.wolfram.com/physics/OttoCycle.html"], 
+   None}]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.386905625703125*^9, 3.386905626609375*^9}},
+ CellID->104339464]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Yu-Sung Chang",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Yu-Sung+Chang"],
+     None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Yu-Sung+Chang"]
+}], "Author",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.38717285140625*^9, 3.387172853328125*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{700, Automatic},
+WindowMargins->{{10, Automatic}, {0, 0}},
+FrontEndVersion->"6.0 for Microsoft Windows (32-bit) (June 19, 2007)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "ResizeImages"->{
+  Cell[93323, 2195, 310, 8, 70, "ControlSuggestions",
+   CellTags->"ResizeImages"]},
+ "RotateAndZoomIn3D"->{
+  Cell[93636, 2205, 676, 16, 70, "ControlSuggestions",
+   CellTags->"RotateAndZoomIn3D"]},
+ "DragLocators"->{
+  Cell[94315, 2223, 339, 11, 70, "ControlSuggestions",
+   CellTags->"DragLocators"]},
+ "CreateAndDeleteLocators"->{
+  Cell[94657, 2236, 636, 15, 70, "ControlSuggestions",
+   CellTags->"CreateAndDeleteLocators"]},
+ "SliderZoom"->{
+  Cell[95296, 2253, 843, 21, 70, "ControlSuggestions",
+   CellTags->"SliderZoom"]},
+ "GamepadControls"->{
+  Cell[96142, 2276, 303, 8, 70, "ControlSuggestions",
+   CellTags->"GamepadControls"]},
+ "AutomaticAnimation"->{
+  Cell[96448, 2286, 1411, 31, 70, "ControlSuggestions",
+   CellTags->"AutomaticAnimation"]},
+ "BookmarkAnimation"->{
+  Cell[97862, 2319, 881, 21, 70, "ControlSuggestions",
+   CellTags->"BookmarkAnimation"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"ResizeImages", 102203, 2463},
+ {"RotateAndZoomIn3D", 102312, 2466},
+ {"DragLocators", 102422, 2469},
+ {"CreateAndDeleteLocators", 102538, 2472},
+ {"SliderZoom", 102652, 2475},
+ {"GamepadControls", 102758, 2478},
+ {"AutomaticAnimation", 102871, 2481},
+ {"BookmarkAnimation", 102988, 2484}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[590, 23, 124, 2, 70, "DemoTitle"],
+Cell[CellGroupData[{
+Cell[739, 29, 33, 0, 70, "InitializationSection"],
+Cell[775, 31, 22357, 534, 70, "Input",
+ CellID->185491449]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[23169, 570, 29, 0, 70, "ManipulateSection"],
+Cell[CellGroupData[{
+Cell[23223, 574, 5446, 129, 70, "Input"],
+Cell[28672, 705, 12690, 288, 70, "Output",
+ CellID->435085593]
+}, {2}]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41408, 999, 36, 0, 70, "ManipulateCaptionSection"],
+Cell[41447, 1001, 733, 12, 70, "ManipulateCaption",
+ CellID->82192114]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[42217, 1018, 28, 0, 70, "ThumbnailSection"],
+Cell[42248, 1020, 12685, 288, 70, "Output",
+ CellID->13044583]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[54970, 1313, 28, 0, 70, "SnapshotsSection"],
+Cell[55001, 1315, 12690, 288, 70, "Output",
+ CellID->273251621],
+Cell[67694, 1605, 12706, 288, 70, "Output",
+ CellID->5213279],
+Cell[80403, 1895, 12814, 291, 70, "Output",
+ CellID->52571985]
+}, Open  ]],
+Cell[93232, 2189, 26, 0, 70, "DetailsSection"],
+Cell[CellGroupData[{
+Cell[93283, 2193, 37, 0, 70, "ControlSuggestionsSection"],
+Cell[93323, 2195, 310, 8, 70, "ControlSuggestions",
+ CellTags->"ResizeImages"],
+Cell[93636, 2205, 676, 16, 70, "ControlSuggestions",
+ CellTags->"RotateAndZoomIn3D"],
+Cell[94315, 2223, 339, 11, 70, "ControlSuggestions",
+ CellTags->"DragLocators"],
+Cell[94657, 2236, 636, 15, 70, "ControlSuggestions",
+ CellTags->"CreateAndDeleteLocators"],
+Cell[95296, 2253, 843, 21, 70, "ControlSuggestions",
+ CellTags->"SliderZoom"],
+Cell[96142, 2276, 303, 8, 70, "ControlSuggestions",
+ CellTags->"GamepadControls"],
+Cell[96448, 2286, 1411, 31, 70, "ControlSuggestions",
+ CellTags->"AutomaticAnimation"],
+Cell[97862, 2319, 881, 21, 70, "ControlSuggestions",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[98780, 2345, 30, 0, 70, "SearchTermsSection"],
+Cell[98813, 2347, 146, 3, 70, "SearchTerms",
+ CellID->775200936],
+Cell[98962, 2352, 145, 3, 70, "SearchTerms",
+ CellID->114808284],
+Cell[99110, 2357, 147, 3, 70, "SearchTerms",
+ CellID->32259884],
+Cell[99260, 2362, 146, 3, 70, "SearchTerms",
+ CellID->3741105],
+Cell[99409, 2367, 159, 3, 70, "SearchTerms",
+ CellID->360014062],
+Cell[99571, 2372, 151, 3, 70, "SearchTerms",
+ CellID->15848455],
+Cell[99725, 2377, 197, 4, 70, "SearchTerms",
+ CellID->151834061],
+Cell[99925, 2383, 148, 3, 70, "SearchTerms",
+ CellID->415743963],
+Cell[100076, 2388, 184, 4, 70, "SearchTerms",
+ CellID->208351],
+Cell[100263, 2394, 197, 4, 70, "SearchTerms",
+ CellID->168494943],
+Cell[100463, 2400, 160, 3, 70, "SearchTerms",
+ CellID->1012933194],
+Cell[100626, 2405, 165, 3, 70, "SearchTerms",
+ CellID->141886445],
+Cell[100794, 2410, 139, 3, 70, "SearchTerms",
+ CellID->66954293],
+Cell[100936, 2415, 64, 1, 70, "SearchTerms",
+ CellID->481549927]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[101037, 2421, 31, 0, 70, "RelatedLinksSection"],
+Cell[101071, 2423, 282, 7, 70, "RelatedLinks",
+ CellID->104339464]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[101390, 2435, 25, 0, 70, "AuthorSection"],
+Cell[101418, 2437, 388, 11, 70, "Author"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
