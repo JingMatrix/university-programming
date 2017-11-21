@@ -1,0 +1,408 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17625,        400]
+NotebookOptionsPosition[     16963,        381]
+NotebookOutlinePosition[     17341,        397]
+CellTagsIndexPosition[     17298,        394]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Duangle", ":=", 
+  RowBox[{"Animate", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "pr", ",", "ps", ",", "pq", ",", "pp", ",", "rot", ",", "trans", ",", 
+        "f1", ",", "duangle"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"pr", ",", "ps", ",", "pq", ",", "pp"}], "}"}], "=", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "0.75"}], ",", 
+            RowBox[{
+             SqrtBox["3"], "/", "4"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0.75", ",", 
+            RowBox[{
+             SqrtBox["3"], "/", "4"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", 
+            RowBox[{
+             SqrtBox["3"], "/", "2"}]}], "}"}]}], "}"}]}], ";", 
+       RowBox[{"rot", "=", 
+        RowBox[{"RotationTransform", "[", 
+         RowBox[{"\[Theta]", ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0"}], "}"}]}], "]"}]}], ";", 
+       RowBox[{"trans", "=", 
+        RowBox[{"TranslationTransform", "[", 
+         RowBox[{"Which", "[", 
+          RowBox[{
+           RowBox[{"0", "\[LessEqual]", "\[Theta]", "\[LessEqual]", 
+            FractionBox["\[Pi]", "3"]}], ",", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"1", "-", 
+              RowBox[{"Cos", "[", "\[Theta]", "]"}]}], ")"}], 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Cos", "[", 
+               FractionBox["\[Pi]", "3"], "]"}], ",", 
+              RowBox[{"Sin", "[", 
+               FractionBox["\[Pi]", "3"], "]"}]}], "}"}]}], ",", 
+           RowBox[{
+            FractionBox["\[Pi]", "3"], "\[LessEqual]", "\[Theta]", 
+            "\[LessEqual]", 
+            RowBox[{"2", 
+             FractionBox["\[Pi]", "3"]}]}], ",", 
+           RowBox[{
+            RowBox[{"Sin", "[", 
+             RowBox[{"\[Theta]", "-", 
+              FractionBox["\[Pi]", "6"]}], "]"}], " ", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Cos", "[", 
+               FractionBox["\[Pi]", "3"], "]"}], ",", 
+              RowBox[{"Sin", "[", 
+               FractionBox["\[Pi]", "3"], "]"}]}], "}"}]}], ",", 
+           RowBox[{
+            FractionBox[
+             RowBox[{"2", "\[Pi]"}], "3"], "\[LessEqual]", "\[Theta]", 
+            "\[LessEqual]", "\[Pi]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Sin", "[", 
+               RowBox[{"\[Theta]", "-", 
+                FractionBox["\[Pi]", "6"]}], "]"}], "-", 
+              FractionBox["1", "2"]}], ",", 
+             FractionBox[
+              SqrtBox["3"], "2"]}], "}"}]}], "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"f1", "[", "z_", "]"}], ":=", 
+        RowBox[{"GeometricTransformation", "[", 
+         RowBox[{
+          RowBox[{"GeometricTransformation", "[", 
+           RowBox[{"z", ",", "rot"}], "]"}], ",", "trans"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Graphics", "[", 
+        RowBox[{
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"RGBColor", "[", 
+              RowBox[{
+              "0.643137", ",", " ", "0.823529", ",", " ", "0.533333"}], "]"}],
+              ",", "\[IndentingNewLine]", 
+             RowBox[{"EdgeForm", "[", 
+              RowBox[{"{", 
+               RowBox[{"Gray", ",", 
+                RowBox[{"Thickness", "[", "0.002", "]"}]}], "}"}], "]"}], ",", 
+             RowBox[{"Triangle", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"1", ",", "0"}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"0", ",", 
+                  SqrtBox["3"]}], "}"}]}], "}"}], "]"}]}], "}"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"duangle", "=", 
+             RowBox[{"N", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Disk", "[", 
+                 RowBox[{"pq", ",", 
+                  RowBox[{"0.5", " ", 
+                   SqrtBox["3"]}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    FractionBox["\[Pi]", "6"], ",", 
+                    RowBox[{"5", " ", 
+                    FractionBox["\[Pi]", "6"]}]}], "}"}]}], "]"}], ",", 
+                RowBox[{"Disk", "[", 
+                 RowBox[{"pp", ",", 
+                  RowBox[{"0.5", " ", 
+                   SqrtBox["3"]}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "5"}], " ", 
+                    FractionBox["\[Pi]", "6"]}], ",", 
+                    RowBox[{"-", 
+                    FractionBox["\[Pi]", "6"]}]}], "}"}]}], "]"}]}], "}"}], 
+              "]"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{"f1", "[", 
+             RowBox[{"Style", "[", 
+              RowBox[{"duangle", ",", 
+               RowBox[{"RGBColor", "[", 
+                RowBox[{"0", ",", " ", "0.835294", ",", " ", "0"}], "]"}]}], 
+              "]"}], "]"}]}]}], "}"}], ",", 
+         RowBox[{"PlotRange", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "1.1"}], ",", "1.1"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "0.5"}], ",", 
+              RowBox[{
+               SqrtBox["3"], "+", "0.1"}]}], "}"}]}], "}"}]}], ",", 
+         RowBox[{"Axes", "\[Rule]", "False"}]}], "\[IndentingNewLine]", 
+        "]"}]}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Theta]", ",", "0", ",", " ", "\"\<\[Theta]\>\""}], "}"}], 
+      ",", "0", ",", "\[Pi]"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7160078089501305`*^9, 3.7160078416678014`*^9}, {
+   3.716008233633052*^9, 3.7160082375713763`*^9}, {3.7160082854584775`*^9, 
+   3.71600851201243*^9}, {3.7160085445957284`*^9, 3.716008819523481*^9}, {
+   3.7160091528561354`*^9, 3.71601001229662*^9}, {3.7160100584170628`*^9, 
+   3.7160100854457626`*^9}, {3.716010349451168*^9, 3.7160103558200407`*^9}, {
+   3.7160103988978662`*^9, 3.7160104293172054`*^9}, {3.7160104864007287`*^9, 
+   3.716010592616647*^9}, {3.7160106387071*^9, 3.716010669211714*^9}, {
+   3.716010881427552*^9, 3.716010930290288*^9}, {3.7160109671969643`*^9, 
+   3.71601105928718*^9}, {3.716011117793181*^9, 3.7160111981715746`*^9}, 
+   3.7160112358996077`*^9, {3.716011297999961*^9, 3.716011342173334*^9}, {
+   3.716011529405549*^9, 3.71601154476978*^9}, {3.7160116866687484`*^9, 
+   3.716011700102956*^9}, {3.7160117447329783`*^9, 3.716011745848428*^9}, {
+   3.716011985783501*^9, 3.7160119879872074`*^9}, {3.7160121787715445`*^9, 
+   3.7160121824922867`*^9}, {3.7160122154454613`*^9, 
+   3.7160122159994063`*^9}, {3.7160125177490654`*^9, 3.716012535210677*^9}, {
+   3.7160125861031084`*^9, 3.7160126049109235`*^9}, {3.7160126683080587`*^9, 
+   3.716012671293459*^9}, {3.716012712626148*^9, 3.7160127221693144`*^9}, {
+   3.7160127649660735`*^9, 3.716012766886942*^9}, {3.716012802908074*^9, 
+   3.7160128144197426`*^9}, {3.7160128633604765`*^9, 3.716012869666231*^9}, {
+   3.7160129118099947`*^9, 3.7160129547384515`*^9}, {3.7160129856340137`*^9, 
+   3.7160130074058757`*^9}, {3.716015781179947*^9, 3.716015796431565*^9}, {
+   3.716015842668765*^9, 3.7160158438729057`*^9}, 3.7160168791421947`*^9, {
+   3.71601691170436*^9, 3.7160169120353975`*^9}, {3.716017017631312*^9, 
+   3.7160170426079473`*^9}, 3.7160171447206435`*^9, {3.716017296679251*^9, 
+   3.7160173742065616`*^9}, {3.7160174324748316`*^9, 3.716017472993243*^9}, 
+   3.716017506981383*^9, {3.7160175453403735`*^9, 3.71601759950953*^9}, {
+   3.716017631458619*^9, 3.716017683359023*^9}, 3.716017814872913*^9, {
+   3.7160180961389737`*^9, 3.716018107772683*^9}, {3.7160182822202597`*^9, 
+   3.7160182951339602`*^9}, {3.716018669594426*^9, 3.716018736902031*^9}, {
+   3.7160188984083924`*^9, 3.7160189812772093`*^9}, 3.7160190341812153`*^9, {
+   3.716019128829934*^9, 3.7160191380187817`*^9}, {3.7160194214044547`*^9, 
+   3.7160194410403433`*^9}, {3.7160194860922084`*^9, 
+   3.7160195137411437`*^9}, {3.7160195450466213`*^9, 3.7160195834890823`*^9}, 
+   3.7160196287523518`*^9, {3.716020290121176*^9, 3.7160203152898693`*^9}, {
+   3.716020368677434*^9, 3.716020414074294*^9}, {3.7160206285102406`*^9, 
+   3.716020659914257*^9}, {3.7160207877470865`*^9, 3.7160208150917544`*^9}, {
+   3.7160208471442337`*^9, 
+   3.7160209020463305`*^9}},ExpressionUUID->"701568ad-d3d6-4f59-a95e-\
+59fe9264ac46"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["Duangle"], "Input",
+ CellChangeTimes->{{3.716010092018044*^9, 3.7160100940896*^9}, 
+   3.716018986483616*^9, 
+   3.7160191455644245`*^9},ExpressionUUID->"36534ad0-3b0b-4f6b-9b44-\
+71a0497faae4"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Theta]$$ = 3.087306399261387, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Theta]$$], 0, "\[Theta]"}, 0, Pi}}, 
+    Typeset`size$$ = {432., {226., 232.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Theta]$19462$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`\[Theta]$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Theta]$$, $CellContext`\[Theta]$19462$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`pr$, $CellContext`ps$, $CellContext`pq$, \
+$CellContext`pp$, $CellContext`rot$, $CellContext`trans$, $CellContext`f1$, \
+$CellContext`duangle$}, {$CellContext`pr$, $CellContext`ps$, \
+$CellContext`pq$, $CellContext`pp$} = {{-0.75, Sqrt[3]/4}, {
+           0.75, Sqrt[3]/4}, {0, 0}, {0, Sqrt[3]/2}}; $CellContext`rot$ = 
+         RotationTransform[$CellContext`\[Theta]$$, {0, 
+           0}]; $CellContext`trans$ = TranslationTransform[
+           Which[
+           0 <= $CellContext`\[Theta]$$ <= 
+            Pi/3, (1 - Cos[$CellContext`\[Theta]$$]) {
+              Cos[Pi/3], 
+              Sin[Pi/3]}, Pi/3 <= $CellContext`\[Theta]$$ <= 2 (Pi/3), 
+            Sin[$CellContext`\[Theta]$$ - Pi/6] {
+              Cos[Pi/3], 
+              Sin[Pi/3]}, 2 Pi/3 <= $CellContext`\[Theta]$$ <= Pi, {
+            Sin[$CellContext`\[Theta]$$ - Pi/6] - 1/2, Sqrt[3]/
+             2}]]; $CellContext`f1$[
+           Pattern[$CellContext`z$, 
+            Blank[]]] := GeometricTransformation[
+           
+           GeometricTransformation[$CellContext`z$, $CellContext`rot$], \
+$CellContext`trans$]; Graphics[{{
+            RGBColor[0.643137, 0.823529, 0.533333], 
+            EdgeForm[{Gray, 
+              Thickness[0.002]}], 
+            Triangle[{{-1, 0}, {1, 0}, {0, 
+               Sqrt[3]}}]}, $CellContext`duangle$ = N[{
+               Disk[$CellContext`pq$, 0.5 Sqrt[3], {Pi/6, 5 (Pi/6)}], 
+               
+               Disk[$CellContext`pp$, 0.5 
+                Sqrt[3], {(-5) (Pi/6), -(Pi/6)}]}]; $CellContext`f1$[
+             Style[$CellContext`duangle$, 
+              RGBColor[0, 0.835294, 0]]]}, 
+          PlotRange -> {{-1.1, 1.1}, {-0.5, Sqrt[3] + 0.1}}, Axes -> False]], 
+      "Specifications" :> {{{$CellContext`\[Theta]$$, 0, "\[Theta]"}, 0, Pi, 
+         AppearanceElements -> {
+          "ProgressSlider", "PlayPauseButton", "FasterSlowerButtons", 
+           "DirectionButton"}}}, 
+      "Options" :> {
+       ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
+        "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
+        True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
+     ImageSizeCache->{489., {271., 278.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Animate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.716020801677379*^9, {3.7160208881177764`*^9, 
+   3.7160209062843924`*^9}},ExpressionUUID->"0aceee82-153b-4fc1-acc6-\
+26601b1a093a"]
+}, Open  ]],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Theta]$$ = 0.47752208334564855`, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Theta]$$], 0, "\[Theta]"}, 0, Pi}}, 
+    Typeset`size$$ = {432., {226., 232.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Theta]$15644$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`\[Theta]$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Theta]$$, $CellContext`\[Theta]$15644$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`pr$, $CellContext`ps$, $CellContext`pq$, \
+$CellContext`pp$, $CellContext`rot$, $CellContext`trans$, $CellContext`f1$, \
+$CellContext`duangle$}, {$CellContext`pr$, $CellContext`ps$, \
+$CellContext`pq$, $CellContext`pp$} = {{-0.75, Sqrt[3]/4}, {
+           0.75, Sqrt[3]/4}, {0, 0}, {0, Sqrt[3]/2}}; $CellContext`rot$ = 
+         RotationTransform[$CellContext`\[Theta]$$, {0, 
+           0}]; $CellContext`trans$ = TranslationTransform[
+           Which[
+           0 <= $CellContext`\[Theta]$$ <= 
+            Pi/3, (1 - Cos[$CellContext`\[Theta]$$]) {
+              Cos[Pi/3], 
+              Sin[Pi/3]}, Pi/3 <= $CellContext`\[Theta]$$ <= 2 (Pi/3), 
+            Sin[$CellContext`\[Theta]$$ - Pi/6] {
+              Cos[Pi/3], 
+              Sin[Pi/3]}, 2 Pi/3 <= $CellContext`\[Theta]$$ <= Pi, {
+            Sin[$CellContext`\[Theta]$$ - Pi/6] - 1/2, Sqrt[3]/
+             2}]]; $CellContext`f1$[
+           Pattern[$CellContext`z$, 
+            Blank[]]] := GeometricTransformation[
+           
+           GeometricTransformation[$CellContext`z$, $CellContext`rot$], \
+$CellContext`trans$]; Graphics[{{
+            RGBColor[0.79, 1, 0.56], 
+            EdgeForm[{Gray, 
+              Thickness[0.002]}], 
+            Triangle[{{-1, 0}, {1, 0}, {0, 
+               Sqrt[3]}}]}, $CellContext`duangle$ = N[{
+               Disk[$CellContext`pq$, 0.5 Sqrt[3], {Pi/6, 5 (Pi/6)}], 
+               
+               Disk[$CellContext`pp$, 0.5 
+                Sqrt[3], {(-5) (Pi/6), -(Pi/6)}]}]; $CellContext`f1$[
+             Style[$CellContext`duangle$, Pink]]}, 
+          PlotRange -> {{-1.1, 1.1}, {-0.5, Sqrt[3] + 0.1}}, Axes -> False]], 
+      "Specifications" :> {{{$CellContext`\[Theta]$$, 0, "\[Theta]"}, 0, Pi}},
+       "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{489., {279., 286.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Input",
+ CellChangeTimes->{{3.7160207796552725`*^9, 
+  3.716020783974414*^9}},ExpressionUUID->"bdd0dd05-76cf-4fbd-b65b-\
+8dc7997fcec9"]
+},
+WindowSize->{1280, 677},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+Magnification:>1.2 Inherited,
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 8974, 202, 489, "Input",ExpressionUUID->"701568ad-d3d6-4f59-a95e-59fe9264ac46"],
+Cell[CellGroupData[{
+Cell[9557, 226, 208, 4, 35, "Input",ExpressionUUID->"36534ad0-3b0b-4f6b-9b44-71a0497faae4"],
+Cell[9768, 232, 3791, 76, 628, "Output",ExpressionUUID->"0aceee82-153b-4fc1-acc6-26601b1a093a"]
+}, Open  ]],
+Cell[13574, 311, 3385, 68, 583, InheritFromParent,ExpressionUUID->"bdd0dd05-76cf-4fbd-b65b-8dc7997fcec9"]
+}
+]
+*)
+
