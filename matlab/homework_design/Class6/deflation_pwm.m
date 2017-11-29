@@ -1,6 +1,20 @@
 function [eig_s,eig_v,t]=deflation_pwm(A,tol,maxit,flag)
+% This function implements the deflation power method in
+% find eigen system for matrix A.
+% Input:
+% A - the matrix to find eigen system
+% tol - the tolerable error in difference comparing in the
+%   power method
+% maxit - the max iteration in each power method step
+%   flag - whether generate the eigenvector errors figure
+% 1 for yes and 0 for no
+% Output:
+% eig_s - the eigenvalues of A
+% eig_v - the eigenvectors of A
+% t - parameter the indicate the error in eig_v
 k=length(A);
 mc=cell(k,3);
+% mc is a data structure 
 mc{1,1}=A;
 eig_s=zeros(k,1);
 eig_v=zeros(k,k);
