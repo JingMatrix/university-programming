@@ -1,4 +1,9 @@
 function [eig_s,eig_v]=powmeth(A,tol,maxit)
+% power method 
+% It is easy to understand
+% 该函数可以决定是否调用反幂法
+% 该函数可以正确输出特征值，但是对特征向量未作
+% 处理，输出的值只是中间量，价值不大
 k=length(A);
 eig_s=zeros(k,1);
 eig_v=zeros(k,k);

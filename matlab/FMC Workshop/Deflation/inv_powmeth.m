@@ -1,4 +1,5 @@
 function [x,lambda]=inv_powmeth(A,x0,tol,maxit)
+%inverse power method
 x=x0;
 z=x/norm(x,inf);
 [L,U,P]=lu(A);
