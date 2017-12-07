@@ -1,31 +1,34 @@
+function [R,iteration] = IQR_method(A,maxit,tol)
 %{
-% This is the implicit QR method for a real matrix
-%(the eigenvalue algorithm), which returns the
-% Quasi-Schur matrix R that is similar and congruent to A (, R has the same
+% This is the implicit QR method for a real matrix, which returns the
+% Quasi-Schur matrix R that is orthonormal similar to A (, R have the same
 % eigenvalues of A, which are what we're mainly caring about). 
-% M is the upper bound of iterations.
+% 'maxit' is the upper bound of iterations.
 % ~ ~ ~ ~
-% The main algorithm is the Francis' double-shifts QR algorithm.
-%(The codes for a single step of doubleQR are given in line 71)
+% The main algorithm is based on Francis' double-shifts QR method.
+% (The code for a single step of doubleQR is given in the annotation.)
 %}
-function [R,iteration] = IQR_method(A,M)
-% Hint: We should first deal with the line 20,117 and 129. 
+    
+    if nargin < 3
+        tol = 1e-16;
+    end
+    
     if nargin < 2
-        M = 2000;
+        maxit = 2000;
     end
     
     n = size(A,1);
     
     % To transfer A into a hessenberg matrix
-    H = hessenberg(A);% We should add the function in our folders 
-    % or just replace this line with the codes at the bottom.
+
+    H = hessenberg(A);
     
-    for iteration = 1:M
+    for iteration = 1:maxit
         
         % To turn H(i,i-1) that is small enough to 0, so that it's easier
         % for us to determine whether to stop the iteration.
         for i = 2 : n
-            if (abs(H(i,i-1)) <= (abs(H(i,i)) + abs(H(i-1,i-1)))*1e-16)
+            if (abs(H(i,i-1)) <= (abs(H(i,i)) + abs(H(i-1,i-1)))*tol)
                 H(i,i-1) = 0;
             end
         end
@@ -70,7 +73,7 @@ function [R,iteration] = IQR_method(A,M)
     %{
     % Apply hessenberg transformation to H2 (computing together with other
     % components of H).
-    % The standard doubleQR codes are like:
+    % The standard doubleQR code is like:
     % 
             function H = doubleQR(H)
                 n = size(H,1);
@@ -114,8 +117,7 @@ function [R,iteration] = IQR_method(A,M)
         for h = 0 : l-m-3
             % Since in the first and last steps,the algorithm is a little 
             % different, two integers 'q' and 'r' are used for brevity.
-            [v,beta] = house([x,y,z]');% We should add the function in our folders 
-            % or just replace this line with the codes at the bottom.
+            [v,beta] = house([x,y,z]');
             q = max(1,h);
             H(n-l+h+1:n-l+h+3,n-l+q:n) = H(n-l+h+1:n-l+h+3,n-l+q:n) - beta*v*(v')*H(n-l+h+1:n-l+h+3,n-l+q:n);
             r = min(n-l+h+4,n-m);
@@ -132,38 +134,3 @@ function [R,iteration] = IQR_method(A,M)
     end
     R = H;
 end
-
-%{
-% My function for a hessenberg transformation:
-    function A = hessenberg(A)
-        n = size(A,1);
-        for k = 1 : n-2
-            [v,beta] = house(A(k+1:n,k));
-            A(k+1:n,k:n) = A(k+1:n,k:n) - beta*v*(v')*A(k+1:n,k:n);
-            A(1:n,k+1:n) = A(1:n,k+1:n) - beta*A(1:n,k+1:n)*v*(v');
-        end
-    end
-
-
-% My function of householder trans. :
-
-    function [x,beta] = house(x)
-        %The returned x and beta present the household matrix:
-        %H = I - beta*x*x'
-        n = size(x);
-        x = x / max(abs(x));
-        sigma = x(2:n)' * x(2:n);
-        if sigma == 0
-            beta = 0;
-        else
-            alpha = sqrt(x(1)^2 + sigma);
-            if x(1) <= 0
-                x(1) = x(1) - alpha;
-            else
-                x(1) = -sigma / (x(1) + alpha);
-            end
-            beta = 2*x(1)^2 / (sigma + x(1)^2);
-        end
-        x = x/x(1);
-    end
-%}
