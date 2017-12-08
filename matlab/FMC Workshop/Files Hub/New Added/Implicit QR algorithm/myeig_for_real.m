@@ -40,7 +40,8 @@ function [V,D] = myeig_for_real(A,maxit1,maxit2,tol)
     % z_{k} = v_{k} / max(abs(v_{k})) ; 
     %}
     
-    for i = 1 : n   % the i-th eigenvector
+    i = 1;
+    while i <= n  % the i-th eigenvector
            %{
            % Here we choose initial vector z_{0} = P*L*ones(n,1),
            % so that from L*U*v_{1} = P*z_{0} = L*ones(n,1),
@@ -52,7 +53,6 @@ function [V,D] = myeig_for_real(A,maxit1,maxit2,tol)
            %}
            [L,U,P] = lu( A - egvl(i)*eye(n) );
            v = U\ones(n,1);
-           lambda = max(abs(v));
            z = v/max(abs(v));
            
            %## IN THIS PLACE, WE CAN ONLY ITERATE FOR ONE TIME! ##
@@ -66,7 +66,14 @@ function [V,D] = myeig_for_real(A,maxit1,maxit2,tol)
                 v = L\U\(P*z);
                 z = v/max(abs(v));
            end
+           
            V(:,i) = z;
+           if isreal(egvl(i))
+                i = i + 1;
+           else
+                V(:,i+1) = conj(z);
+                i = i + 2;
+           end
     end
     
     % Store 'egvl' in D
